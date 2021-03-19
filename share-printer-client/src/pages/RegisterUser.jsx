@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import {useState} from 'react'
+import './form.css'
 
 function RegisterUser () {
   const [input, setInput] = useState({
@@ -9,52 +10,67 @@ function RegisterUser () {
     password: ''
   })
 
+  const submitRegister = (e) => {
+    e.preventDefault()
+    console.log('masuk')
+  }
+
+  const onChangeHandler = (e) => {
+    const {value, name} = e.target
+    setInput({...input, [name]: value})
+  }
 
   return (
-    <div className="container-form d-flex flex-column justify-content-center">
-      <h1 className="text-center">Register</h1>     
-      <div className="d-flex justify-content-center align-items-center">     
-        <form>
-          <label className="form-label" for="email">
-            Email
-          </label> 
-          <div className="mb-3 input-group">
-            <span className="input-group-text">
-              <i className="material-icons">email</i>
-            </span>
-            <input type="email" placeholder="Email" className="form-control" id="email" />
-          </div>
-          <label className="form-label" for="username">
-            Username
-          </label> 
-          <div className="mb-3 input-group">
-            <span className="input-group-text">
-              <i className="material-icons">person</i>
-            </span>
-            <input type="text" placeholder="Username" className="form-control" id="username" />
-          </div>
-          <label className="form-label" for="password">
-            Password
-          </label> 
-          <div className="mb-3 input-group">
-            <span className="input-group-text">
-              <i className="material-icons">lock</i>
-            </span>
-            <input type="password" placeholder="Password" className="form-control" id="username" />
-          </div>
-          <div className="d-flex justify-content-between">
-            <div>
-              <button
-                className="btn btn-primary"
-                type="button"
-              >
-                Register
-              </button>
-            </div>      
-            <div className="">
-              <Link to="/loginUser" className="">Login Here</Link>
+    <div>
+      <div id="login-form" className="container shadow">
+        <h1>Share Print</h1>
+        <h5 className="mb-3 text-center">Register</h5>
+        <br/>
+        <form onSubmit={submitRegister}>
+          <div className="mb-3">
+            <div className="input-group">
+              <div className="input-group-text"><i className="material-icons">person</i></div>
+              <input
+              type="text"
+              className="form-control"
+              placeholder="Username"
+              onChange={onChangeHandler}
+              name="username"
+              value={input.username}
+              />
             </div>
           </div>
+          <div className="mb-3">
+            <div className="input-group">
+              <div className="input-group-text"><i className="material-icons">email</i></div>
+              <input
+              type="email"
+              className="form-control"
+              placeholder="Email"
+              onChange={onChangeHandler}
+              name="email"
+              value={input.email}
+              />
+            </div>
+          </div>
+          <div className="mb-3">
+            <div className="input-group">
+              <div className="input-group-text"><i className="material-icons">lock</i></div>
+              <input
+              type="password"
+              className="form-control"
+              placeholder="Password"
+              onChange={onChangeHandler}
+              name="password"
+              value={input.password}
+              />
+            </div>
+          </div>
+          <div className="d-grid mb-3">
+            <button type="submit" className="btn btn-warning mb-3">Register</button>
+            <button type="submit" className="btn btn-outline-danger"> Cancel</button>
+          </div>
+          <p>Already have an account? <Link to="/loginUser">Login Here!</Link></p>
         </form>
       </div>
     </div>
