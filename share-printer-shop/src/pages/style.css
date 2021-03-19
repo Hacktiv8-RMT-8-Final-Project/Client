@@ -1,0 +1,27 @@
+.container-view {
+  height: 65vh;
+}
+
+.container-home {
+  height: 65vh;
+  margin: 60px 60px;
+}
+
+.cont-chat {
+  height: 20vh;
+  width: 90vw
+}
+
+.rules {
+  width: 25%;
+}
+
+.order-list {
+  margin-right: 20%;
+  margin-left: 50px;
+  height: 50vh;
+}
+
+.order-item {
+  width: 1000px;
+}
