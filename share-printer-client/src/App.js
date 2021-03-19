@@ -1,6 +1,5 @@
 import React from 'react'
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
@@ -8,22 +7,24 @@ import {
 import LoginUser from './pages/LoginUser'
 import RegisterUser from './pages/RegisterUser'
 import Home from './pages/Home'
+import Navbar from './components/Navbar';
 
 function App () {
   return (
-    <Router>
-      <Switch>
-        <Route path="/registerUser">
-          <RegisterUser />
-        </Route>
-        <Route path="/loginUser">
-          <LoginUser />
-        </Route>
-        <Route path="/">
-          <Home />
-        </Route>
-      </Switch>
-    </Router>
+    <>
+      <Navbar />
+        <Switch>
+          <Route path="/registerUser">
+            <RegisterUser />
+          </Route>
+          <Route path="/loginUser">
+            <LoginUser />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+    </>
   )
 }
 
