@@ -3,7 +3,7 @@ import {Route, Switch} from 'react-router-dom'
 import LoginShop from './pages/LoginShop'
 import RegisterShop from './pages/RegisterShop'
 import Home from './pages/Home'
-import FormAddProduct from './pages/FormAddProduct';
+import NewAddProduct from './pages/NewAddProduct';
 import Test from './pages/tets';
 import SideNavbar from './components/SideNavbar';
 
@@ -13,7 +13,7 @@ function App() {
       <Switch>
       <Route path="/addProduct">
           <SideNavbar />
-          <FormAddProduct />
+          <NewAddProduct />
         </Route>
         <Route path="/loginShop">
           <LoginShop />
