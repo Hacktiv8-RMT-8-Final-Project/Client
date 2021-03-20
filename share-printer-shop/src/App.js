@@ -3,15 +3,16 @@ import {Route, Switch} from 'react-router-dom'
 import LoginShop from './pages/LoginShop'
 import RegisterShop from './pages/RegisterShop'
 import Home from './pages/Home'
-import Navbar from './components/Navbar';
 import FormAddProduct from './pages/FormAddProduct';
+import Test from './pages/tets';
+import SideNavbar from './components/SideNavbar';
 
 function App() {
   return (
     <div className="App">
-      <Navbar />
       <Switch>
       <Route path="/addProduct">
+          <SideNavbar />
           <FormAddProduct />
         </Route>
         <Route path="/loginShop">
@@ -20,7 +21,11 @@ function App() {
         <Route path="/registerShop">
           <RegisterShop />
         </Route>
+        <Route path="/test">
+          <Test />
+        </Route>
         <Route path="/">
+          <SideNavbar />
           <Home />
         </Route>
       </Switch>

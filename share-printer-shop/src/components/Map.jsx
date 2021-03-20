@@ -8,7 +8,7 @@ import {
 } from "react-google-maps";
 
 function Map({setLocate}) {
-  const [places, setPlaces] = useState([])
+  const [place, setPlace] = useState(null)
 
   const [center, setCenter] = useState({
     lat: -6.2,
@@ -16,9 +16,10 @@ function Map({setLocate}) {
   })
 
   const addMarker = (e) => {
-    const newPlace = { id: places.length, lat: e.latLng.lat(), lng: e.latLng.lng() };
-    setPlaces([...places, newPlace])
-    setLocate(newPlace)
+    const newPlace = {lat: e.latLng.lat(), lng: e.latLng.lng()};
+    // setPlaces([...places, newPlace])
+    setPlace(newPlace)
+    setLocate(JSON.stringify(newPlace))
    }
 
    return (
@@ -28,15 +29,16 @@ function Map({setLocate}) {
           defaultZoom={16}
           defaultCenter={center}
         >
-        {places?.map(place => {
-          return (
-            <Marker
-              key={place.id}
-              position={{ lat: place.lat, lng: place.lng }}
-            />
-          );
-        })}
-      </GoogleMap>
+          {/* {places?.map(place => {
+            return (
+              <Marker
+                key={place.id}
+                position={{ lat: place.lat, lng: place.lng }}
+              />
+            );
+          })} */}
+            <Marker position={place ? {lat:place?.lat, lng: place?.lng} : '' } />
+        </GoogleMap>
     </>
   )
 }
