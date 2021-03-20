@@ -23,7 +23,7 @@ function RegisterUser () {
   return (
     <div>
       <div id="login-form" className="container shadow">
-        <h1>Share Print</h1>
+        <h1>Share Printer</h1>
         <h5 className="mb-3 text-center">Register</h5>
         <br/>
         <form onSubmit={submitRegister}>
