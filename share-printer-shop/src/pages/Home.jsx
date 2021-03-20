@@ -1,46 +1,41 @@
 // import Navbar from '../components/Navbar';
-import './style.css'
+import '../styles/style.css'
+import OrderList from '../components/OrderList'
+import { useState } from 'react'
 
 function Home (){
+  const [data, setData] = useState(['Order 1', 'Order 2', 'Order 3'])
+
   return (
-    <div className="container-home">
-      <div className="d-flex justify-content-around">
-        <div className="bg-success rules d-flex flex-column">
-          <div className="m-3 align-self-center">
-            <button>Tombol Switch</button>
+    <>
+      <h1 className="mt-3">Dashboard</h1>
+      <div className="container-home">
+        <div className="d-flex justify-content-around">
+          <div className="bg-success rules d-flex flex-column rounded">
+            <div className="my-2 text-center">
+              <p className="my-2">status</p>
+              <button>Tombol Switch</button>
+            </div>
+            <div className="p-3 text-wrap">
+                Ini Rules
+            </div>
           </div>
-          Ini Switch Sama Tata Cara
+          <div className="bg-info w-100 order-list d-flex flex-column align-items-center rounded py-2">
+            {
+              data.map((item, index) => {
+                return <OrderList data={item} key={index} />
+              })
+            }
+          </div>
+          {/* <Navbar /> */}
         </div>
-        <div className="bg-info w-100 order-list d-flex flex-column align-items-center">
-          <div className="bg-light m-2 p-2 d-flex order-item d-flex justify-content-around">
-            Order 1
-            <button>Change Status</button>
+        {/* <div className="position-relative cont-chat">
+          <div className="position-absolute bottom-0 end-0">
+            <button className="px-5 py-2">Chat</button>
           </div>
-          <div className="bg-light m-2 p-2 order-item d-flex justify-content-around">
-            Order 2
-            <button>Change Status</button>
-          </div>
-          <div className="bg-light m-2 p-2 order-item d-flex justify-content-around">
-            Order 2
-            <button>Change Status</button>
-          </div>
-          <div className="bg-light m-2 p-2 order-item d-flex justify-content-around">
-            Order 2
-            <button>Change Status</button>
-          </div>
-          {/* <ul class="list-group m-2 p-2 d-flex order-item">
-            <li class="list-group-item m-2">An item</li>
-            <li class="list-group-item m-2">A second item</li>
-          </ul> */}
-        </div>
-        {/* <Navbar /> */}
+        </div> */}
       </div>
-      <div className="position-relative cont-chat">
-        <div className="position-absolute bottom-0 end-0">
-          <button className="px-5 py-2">Chat</button>
-        </div>
-      </div>
-    </div>
+    </>
   )
 }
 

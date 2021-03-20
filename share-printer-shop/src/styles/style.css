@@ -2,9 +2,13 @@
   height: 65vh;
 }
 
+p {
+  margin-bottom: 0 !important;
+}
+
 .container-home {
   height: 65vh;
-  margin: 60px 60px;
+  margin: 40px 60px;
 }
 
 .cont-chat {
@@ -24,4 +28,13 @@
 
 .order-item {
   width: 1000px;
+  border-radius: 10px;
+}
+
+.logout-btn {
+  width: 110px;
+}
+
+.users {
+  margin-right: 10px;
 }

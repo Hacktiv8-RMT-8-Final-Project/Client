@@ -107,7 +107,7 @@ body {
   /* background: -webkit-linear-gradient(to top, #76b852, #8DC26F); */
   /* background: -moz-linear-gradient(to top, #76b852, #8DC26F); */
   /* background: -o-linear-gradient(to top, #76b852, #8DC26F); */
-  background: linear-gradient(to top, #76b852, #8DC26F);
+  /* background: linear-gradient(to top, #76b852, #8DC26F); */
   background-size: cover;
   background-attachment: fixed;
   font-family: 'Roboto', sans-serif;
@@ -125,10 +125,12 @@ h1 {
 
 /*-- main --*/
 .main-w3layouts {
+  z-index: 1000;
   padding: 3em 0 1em;
 }
 
 .main-agileinfo {
+  z-index: 999;
   width: 35%;
   margin: 3em auto;
   background: rgba(0, 0, 0, 0.18);
@@ -345,7 +347,23 @@ input.checkbox:checked:after {
 
 /*-- //copyright --*/
 .wrapper {
+  height: 100%;
+  background-color: #000;
+  position: relative;
+  overflow: hidden;
+}
+
+.wrapper-login {
   height: 100vh;
+  background-color: #000;
+  position: relative;
+  overflow: hidden;
+}
+
+.container-register {
+  height: 100%;
+  background-color: rgb(102, 102, 102);
+  z-index: -1;
   position: relative;
   overflow: hidden;
 }
@@ -365,7 +383,7 @@ input.checkbox:checked:after {
   display: block;
   width: 40px;
   height: 40px;
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(252, 0, 0, 0.15);
   bottom: -160px;
   -webkit-animation: square 20s infinite;
   -moz-animation: square 250s infinite;

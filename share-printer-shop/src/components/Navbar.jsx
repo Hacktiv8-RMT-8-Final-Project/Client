@@ -1,4 +1,5 @@
 import {NavLink} from 'react-router-dom'
+import '../styles/style.css'
 
 function Navbar(){
   return (
@@ -21,16 +22,12 @@ function Navbar(){
             </li>
           </ul>
         </div>
-        <div>
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item dropdown">
-              <button className="btn dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                Users
-              </button>
-              <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <button className="btn btn-danger">Log Out</button>
-              </ul>
-            </li>
+        <div className="dropdown users">
+          <button className="btn btn dropdown-toggle px-5" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Users
+          </button>
+          <ul className="dropdown-menu logout-btn" aria-labelledby="dropdownMenuButton1">
+            <li className="logout-btn"><button className="btn">Log Out</button></li>
           </ul>
         </div>
       </div>

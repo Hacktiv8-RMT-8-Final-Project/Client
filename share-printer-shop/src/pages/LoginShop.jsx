@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import './form.css'
+import '../styles/form.css'
 import {useState} from 'react'
 
 function LoginShop () {
@@ -20,7 +20,7 @@ function LoginShop () {
   }
 
   return (
-    <div className="main-w3layouts wrapper">
+    <div className="main-w3layouts wrapper-login">
       <h1>Login</h1>
       <div className="main-agileinfo">
         <div className="agileits-top">
