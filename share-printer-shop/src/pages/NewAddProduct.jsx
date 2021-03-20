@@ -33,7 +33,6 @@ function NewAddProduct () {
         </div>
         <div className="d-flex justify-content-center gap-3">
           <button type="submit" className="btn btn-primary fw-bold rounded-pill" id="btn-submit">Submit</button>
-          <button type="submit" className="btn btn-danger fw-bold rounded-pill" id="btn-submit">Cancel</button>
         </div>
       </form>
     </div>
