@@ -4,12 +4,16 @@ import LoginShop from './pages/LoginShop'
 import RegisterShop from './pages/RegisterShop'
 import Home from './pages/Home'
 import Navbar from './components/Navbar';
+import FormAddProduct from './pages/FormAddProduct';
 
 function App() {
   return (
     <div className="App">
       <Navbar />
       <Switch>
+      <Route path="/addProduct">
+          <FormAddProduct />
+        </Route>
         <Route path="/loginShop">
           <LoginShop />
         </Route>
