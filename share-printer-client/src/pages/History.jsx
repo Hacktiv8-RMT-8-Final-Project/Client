@@ -9,12 +9,12 @@ function History () {
       </div>
       <div className="shadow" id="container-card-history">
         <div className="shadow-sm mb-3" id="hsitory-card">
-          <div class="card">
-            <h5 class="card-header">Nama Toko</h5>
-            <div class="card-body">
-              <h5 class="card-title">Jenis warna: Color/BW</h5>
-              <p class="card-text">Detail print</p>
-              <p class="btn btn-primary">Status</p>
+          <div className="card">
+            <h5 className="card-header">Nama Toko</h5>
+            <div className="card-body">
+              <h5 className="card-title">Jenis warna: Color/BW</h5>
+              <p className="card-text">Detail print</p>
+              <p className="btn btn-primary">Status</p>
             </div>
           </div>
         </div>
