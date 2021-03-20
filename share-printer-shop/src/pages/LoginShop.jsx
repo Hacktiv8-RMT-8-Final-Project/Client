@@ -1,7 +1,8 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import '../styles/form.css'
 import {useState} from 'react'
+import '../styles/form.css'
+import logo from '../assets/sharep.png'
 
 function LoginShop () {
   const [input, setInput] = useState({
@@ -15,45 +16,52 @@ function LoginShop () {
   }
 
   const onChangeHandler = (e) => {
-    const {value, name} = e.target.value
+    const {value, name} = e.target
     setInput({...input, [name]: value})
   }
 
   return (
-    <div className="main-w3layouts wrapper-login">
-      <h1>Login</h1>
-      <div className="main-agileinfo">
-        <div className="agileits-top">
+    <div id="login" className="shadow d-flex">
+      <img src={logo} alt="logo"/>
+        <div id="login-form" className=" p-5">
+          <h1 className="">Share Printer</h1>
+          <h5 className="mb-3 text-center">Login</h5>
+          <br/>
           <form onSubmit={submitLogin}>
-            <div>
-              <label className="form-label fs-5 text-light">Email</label>
-              <input className="text email" type="email" name="email" placeholder="Email" onChange={onChangeHandler} />
+            <div className="mb-3">
+              <div className="input-group">
+                <div className="input-group-text"><i className="material-icons">email</i></div>
+                <input
+                type="email"
+                className="form-control"
+                placeholder="Email"
+                name="email"
+                onChange={onChangeHandler}
+                value={input.email}
+                />
+              </div>
             </div>
-            <div>
-              <label className="form-label fs-5 text-light">Password</label>
-              <input className="text" type="password" name="password" placeholder="Password" onChange={onChangeHandler} />
+            <div className="mb-3">
+              <div className="input-group">
+                <div className="input-group-text"><i className="material-icons">lock</i></div>
+                <input
+                type="password"
+                className="form-control"
+                placeholder="Password"
+                name="password"
+                onChange={onChangeHandler}
+                value={input.password}
+                />
+              </div>
             </div>
-            <input type="submit" value="Login" />
+            <div className="d-grid mb-3">
+              <button type="submit" className="btn btn-warning mb-3">Login</button>
+              <button type="submit" className="btn btn-outline-danger" >Cancel</button>
+            </div>
+            <p>Don't have any account? <Link to="/registerShop">Register Here !</Link></p>
           </form>
-          <p>Don't have an Account? <Link to="/registerShop"> Register Now!</Link></p>
         </div>
       </div>
-      <div className="colorlibcopy-agile">
-        <p>© 2018 Share Printer Register Form</p>
-      </div>
-      <ul className="colorlib-bubbles">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
-    </div>
   )
 }
 
