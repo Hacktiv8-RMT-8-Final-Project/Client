@@ -1,0 +1,28 @@
+#container-history{
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+  margin-bottom: 5%
+}
+
+#container-card-history {
+  background-color: white;
+  height: 500px;
+  padding: 10px;
+  overflow: scroll;
+}
+
+#history-card {
+}
+
+#history-heading {
+  background-color: #3D8DB5;
+  padding: 20px;
+  border-radius: 5px 5px 0px 0px;
+}
+
+#text-heading {
+  color: white;
+
+}
