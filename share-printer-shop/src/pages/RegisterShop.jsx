@@ -31,7 +31,6 @@ function RegisterShop () {
     catch(err) {
       console.log(err.response.data)
     }
-    
   }
 
   const onChangeHandler = (e) => {
