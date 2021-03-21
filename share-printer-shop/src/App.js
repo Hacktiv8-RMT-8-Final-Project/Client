@@ -21,7 +21,9 @@ const authenticate = (to, from, next) => {
     next.redirect('/loginShop')
   } else if (to.location.pathname === '/productCollection' && !localStorage.getItem('access_token')) {
     next.redirect('/loginShop')
-  } else {
+  } else if (to.location.pathname === '/history' && !localStorage.getItem('access_token')) {
+    next.redirect('/loginShop')
+  }else {
     next()
   }
 }

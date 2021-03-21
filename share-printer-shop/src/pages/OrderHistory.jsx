@@ -8,7 +8,7 @@ function OrderHistory () {
       <table className="table table-hover">
         <thead>
           <tr>
-            <th scope="col">HistoryId</th>
+            <th scope="col">No.</th>
             <th scope="col">Customer</th>
             <th scope="col">Product Name</th>
             <th scope="col">copy</th>

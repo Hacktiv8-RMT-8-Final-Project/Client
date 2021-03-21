@@ -2,10 +2,16 @@ import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 
+const baseUrl = 'http://localhost:3002/'
+
 function ProductCollection () {
   const history = useHistory()
-  const [shoper, setShoper] = useState({})
-  const [dataProduct, setDataProduct] = useState ({})
+  const [shoper, setShoper] = useState([])
+  const [dataProduct, setDataProduct] = useState ({
+    display_name: '',
+    price: '',
+    description: ''
+  })
 
   const onChangeHandler = ({target}) => {
     const {value, name} = target
@@ -14,7 +20,7 @@ function ProductCollection () {
 
   useEffect(() => {
     axios({
-      url: 'http://localhost:3000/shop/detail',
+      url: baseUrl + 'shop/detail',
       method: 'GET',
       headers: {access_token: localStorage.getItem('access_token')}
     })
@@ -24,12 +30,12 @@ function ProductCollection () {
       .catch(err => {
         console.log(err)
       })
-  }, [])
+  }, [shoper])
 
   
   const deleteProduct = (value) => {
     axios({
-      url: 'http://localhost:3000/shop/detail/' + shoper.id,
+      url: baseUrl + 'shop/detail/' + shoper.id,
       method: 'DELETE',
       headers: {access_token: localStorage.getItem('access_token')},
       data: {products_uuid: value}
@@ -42,27 +48,30 @@ function ProductCollection () {
       })
   }
 
-  useEffect(() => {
-    axios({
-      url: 'http://localhost:3000/shop/detail',
-      method: 'GET',
-      headers: {access_token: localStorage.getItem('access_token')}
-    })
-      .then(({data}) => {
-        setShoper(data.data)
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }, [])
+  // useEffect(() => {
+  //   axios({
+  //     url: 'http://localhost:3000/shop/detail',
+  //     method: 'GET',
+  //     headers: {access_token: localStorage.getItem('access_token')}
+  //   })
+  //     .then(({data}) => {
+  //       setShoper(data.data)
+  //     })
+  //     .catch(err => {
+  //       console.log(err)
+  //     })
+  // }, [])
 
   const editProduct = async (e) => {
-    const updateProduct = shoper.products.filter(product => {
-      let key = Object.keys(product)[0]
-      return key === dataProduct.id
-    })
+    // const updateProduct = shoper.products.filter(product => {
+    //   let key = Object.keys(product)[0]
+    //   return key === dataProduct.id
+    // })
+    console.log('masuk')
+    e.preventDefault()
+    const updateShop = {...shoper}
   
-    shoper.products.forEach((product)=> {
+    updateShop.products.forEach((product)=> {
       let key = Object.keys(product)[0]
       if(key === dataProduct.id) {
         delete dataProduct.id
@@ -70,13 +79,14 @@ function ProductCollection () {
       } 
     })
 
-    const updateShop = {...shoper, updateProduct}
-    await axios({
-      url: `http://localhost:3000/shop/detail/${shoper.id}`,
+    let updatedShop = await axios({
+      url: `${baseUrl}shop/detail/${shoper.id}`,
       method: 'PUT',
       headers: {access_token: localStorage.getItem('access_token')},
       data: updateShop
     })
+
+    setShoper(updatedShop.data)
     history.push('/productCollection')
   }
 
@@ -95,7 +105,7 @@ function ProductCollection () {
       <table className="table table-hover">
         <thead>
           <tr>
-            <th scope="col">ProductId</th>
+            <th scope="col">No. </th>
             <th scope="col">Product Name</th>
             <th scope="col">Price</th>
             <th scope="col">Description</th>
@@ -104,11 +114,11 @@ function ProductCollection () {
         </thead>
         <tbody>
           {
-            shoper.products?.map(product => {
+            shoper.products?.map((product, index) => {
               let key = Object.keys(product)[0]
               return (
                 <tr key={key}>
-                  <th scope="row">1</th>
+                  <th scope="row">{index + 1}</th>
                   <td>{product[key].display_name}</td>
                   <td>{product[key].price}</td>
                   <td className="">{product[key].description}</td>
@@ -162,7 +172,7 @@ function ProductCollection () {
       </table>
 
 
-      <div className="modal fade" id="edit" tabindex="-1" aria-labelledby="editLabel" aria-hidden="true">
+      <div className="modal fade" id="edit" tabIndex="-1" aria-labelledby="editLabel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered  modal-lg">
           <div className="modal-content">
             <div className="modal-header">
@@ -170,9 +180,9 @@ function ProductCollection () {
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
-            <form id="" className="" onSubmit={editProduct} >
+            <form id="" className="" >
                 <div className="mb-3">
-                  <label for="exampleInputEmail1" className="form-label">Product Name:</label>
+                  <label htmlFor="exampleInputEmail1" className="form-label">Product Name:</label>
                   <input type="text"
                    className="form-control"
                    name="display_name"
@@ -182,7 +192,7 @@ function ProductCollection () {
                 </div>
 
                 <div className="mb-3">
-                  <label for="exampleInputEmail1" className="form-label">Price</label>
+                  <label htmlFor="exampleInputEmail1" className="form-label">Price</label>
                   <input type="text"
                    className="form-control"
                    name="price"
@@ -192,7 +202,7 @@ function ProductCollection () {
                 </div>
 
                 <div className="mb-5">
-                  <label for="exampleInputEmail1" className="form-label">Description</label>
+                  <label htmlFor="exampleInputEmail1" className="form-label">Description</label>
                   <textarea 
                   name="description" 
                   id="" cols="30" 
@@ -203,7 +213,7 @@ function ProductCollection () {
                   ></textarea>
                 </div>
                 <div className="d-flex justify-content-center gap-3">
-                  <button type="submit" className="btn btn-primary fw-bold rounded-pill" id="btn-submit">Submit</button>
+                  <button type="button" className="btn btn-primary fw-bold rounded-pill" id="btn-submit" data-bs-dismiss="modal" onClick={editProduct}>Submit</button>
                 </div>
               </form>
             </div>

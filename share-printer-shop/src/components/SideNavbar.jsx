@@ -24,7 +24,7 @@ function SideNavbar () {
             currentPath === '/' ?
             <ul className="list-unstyled components">
               <li className="active nav-item">
-                <NavLink to='/' classNameName="nav-link">Home</NavLink>
+                <NavLink to='/' className="nav-link">Home</NavLink>
               </li>
               <li className="nav-item">
                 <NavLink to='/productCollection'>Product Collection</NavLink>
@@ -40,7 +40,7 @@ function SideNavbar () {
             currentPath === '/productCollection' ?
             <ul className="list-unstyled components">
               <li className="nav-item">
-                <NavLink to='/' classNameName="nav-link">Home</NavLink>
+                <NavLink to='/' className="nav-link">Home</NavLink>
               </li>
               <li className="active nav-item">
                 <NavLink to='/productCollection'>Product Collection</NavLink>
@@ -56,7 +56,7 @@ function SideNavbar () {
             currentPath === '/addProduct' ?
             <ul className="list-unstyled components">
               <li className="nav-item">
-                <NavLink to='/' classNameName="nav-link">Home</NavLink>
+                <NavLink to='/' className="nav-link">Home</NavLink>
               </li>
               <li className="nav-item">
                 <NavLink to='/productCollection'>Product Collection</NavLink>
@@ -71,7 +71,7 @@ function SideNavbar () {
 
             <ul className="list-unstyled components">
             <li className="e nav-item">
-              <NavLink to='/' classNameName="nav-link">Home</NavLink>
+              <NavLink to='/' className="nav-link">Home</NavLink>
             </li>
             <li className="nav-item">
               <NavLink to='/productCollection'>Product Collection</NavLink>

@@ -3,6 +3,7 @@ import '../styles/style.css'
 import { v4 as uuidv4 } from 'uuid'
 import axios from 'axios'
 import { useHistory } from 'react-router'
+const baseUrl = 'http://localhost:3002/'
 
 function NewAddProduct () {
   const [input, setInput] = useState({
@@ -22,7 +23,7 @@ function NewAddProduct () {
 
   useEffect(() => {
     axios({
-      url: 'http://localhost:3000/shop/detail',
+      url: baseUrl + 'shop/detail',
       method: 'GET',
       headers: {access_token: localStorage.getItem('access_token')}
     })
@@ -40,14 +41,14 @@ function NewAddProduct () {
     let newProduct = {}
     newProduct[uuid] = input
     let products
-    if(shoper && shoper.products.length){
+    if(Object.keys(shoper).length && shoper.products.length){
       products = [...shoper.products, newProduct]
     } else {
       products = [newProduct]
     }
     const updateShop = {...shoper, products}
     await axios({
-      url: `http://localhost:3000/shop/detail/${shoper.id}`,
+      url: `${baseUrl}shop/detail/${shoper.id}`,
       method: 'PUT',
       headers: {access_token: localStorage.getItem('access_token')},
       data: updateShop
@@ -64,7 +65,7 @@ function NewAddProduct () {
       </div>
       <form id="form-add-product" className="shadow" onSubmit={submitProduct} >
         <div className="mb-3">
-          <label for="exampleInputEmail1" className="form-label">Product Name:</label>
+          <label htmlFor="exampleInputEmail1" className="form-label">Product Name:</label>
           <input type="text"
            className="form-control"
            name="display_name"
@@ -73,7 +74,7 @@ function NewAddProduct () {
         </div>
 
         <div className="mb-3">
-          <label for="exampleInputEmail1" className="form-label">Price</label>
+          <label htmlFor="exampleInputEmail1" className="form-label">Price</label>
           <input type="text"
            className="form-control"
            name="price"
@@ -82,7 +83,7 @@ function NewAddProduct () {
         </div>
 
         <div className="mb-5">
-          <label for="exampleInputEmail1" className="form-label">Description</label>
+          <label htmlFor="exampleInputEmail1" className="form-label">Description</label>
           <textarea 
           name="description" 
           id="" cols="30" 

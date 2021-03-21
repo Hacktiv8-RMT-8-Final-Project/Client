@@ -1,15 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './newHomepage.css'
 import contohBuktiBayar from '../assets/BuktiBayar.png'
+import axios from 'axios'
+const baseUrl = 'http://localhost:3002/'
 
 function NewHomepage () {
+
+  const [orders, setOrders] = useState([])
+
+  useEffect(() => {
+    axios({
+      url: baseUrl + 'shop/order_lists',
+      method: 'GET',
+      headers: {access_token: localStorage.getItem('access_token')}
+    })
+      .then(({data}) => {
+        setOrders(data.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }, [])
   return (
     <div id="table-container" className="shadow p-5">
       <h4 className="text-center mb-5 fw-bold">Share P Order List</h4>
       <table className="table table-hover">
         <thead>
           <tr>
-            <th scope="col">OrderId</th>
+            <th scope="col">No. </th>
             <th scope="col">Customer</th>
             <th scope="col">Service</th>
             <th scope="col">status</th>
@@ -17,7 +35,30 @@ function NewHomepage () {
           </tr>
         </thead>
         <tbody>
-          <tr>
+          {
+            orders?.map(order => {
+              return (
+                  <tr key={order.id}>
+                    <th scope="row">3</th>
+                    <td>{order.email_user}</td>
+                    <td>Thornton</td>
+                    <td className="fst-italic">pending</td>
+                    <td>
+                      <div className="d-flex gap-2 justify-content-center">
+                        <button type="button" className="btn btn-warning" data-bs-toggle="modal" data-bs-target="#details">
+                          Details
+                        </button>
+
+                        <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#payment">
+                          Payment
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+              )
+            })
+          }
+          {/* <tr>
             <th scope="row">1</th>
             <td>Mark</td>
             <td>Otto</td>
@@ -50,7 +91,7 @@ function NewHomepage () {
             </td>
           </tr>
           <tr>
-          <th scope="row">3</th>
+            <th scope="row">3</th>
             <td>Jacob</td>
             <td>Thornton</td>
             <td className="fst-italic">pending</td>
@@ -65,11 +106,11 @@ function NewHomepage () {
                 </button>
               </div>
             </td>
-          </tr>
+          </tr> */}
         </tbody>
       </table>
 
-      <div className="modal fade" id="details" tabindex="-1" aria-labelledby="detailsLabel" aria-hidden="true">
+      {/* <div className="modal fade" id="details" tabIndex="-1" aria-labelledby="detailsLabel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">
@@ -103,26 +144,26 @@ function NewHomepage () {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
-      <div class="modal fade" id="payment" tabindex="-1" aria-labelledby="paymentLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered  modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="paymentLabel">Order Receipt</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      {/* <div className="modal fade" id="payment" tabIndex="-1" aria-labelledby="paymentLabel" aria-hidden="true">
+        <div className="modal-dialog modal-dialog-centered  modal-lg">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="paymentLabel">Order Receipt</h5>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div className="modal-body">
               <img src={contohBuktiBayar} alt="contohBuktiBayar" id="bukti-bayar" className="mx-5"/>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Accept</button>
-              <button type="button" class="btn btn-danger">Reject</button>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" className="btn btn-primary">Accept</button>
+              <button type="button" className="btn btn-danger">Reject</button>
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }
