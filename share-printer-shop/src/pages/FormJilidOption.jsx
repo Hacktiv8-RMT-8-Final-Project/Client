@@ -9,67 +9,67 @@ function FormJilid () {
       </div>
     <form id="form-add-product" className="shadow">
       <h6>Hard Cover</h6>
-      <label for="exampleInputEmail1" class="form-label">Letter</label>
-      <div class="mb-3 d-flex justify-conten-center gap-2">
-        <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="price"/>
+      <label htmlFor="exampleInputEmail1" className="form-label">Letter</label>
+      <div className="mb-3 d-flex justify-conten-center gap-2">
+        <input type="number" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="price"/>
         <textarea placeholder="description" className="form-control" id="" cols="30" rows="1"></textarea>
       </div>
       
-      <label for="exampleInputEmail1" class="form-label">Legal</label>
-      <div class="mb-3 d-flex justify-conten-center gap-2">
-        <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="price"/>
+      <label htmlFor="exampleInputEmail1" className="form-label">Legal</label>
+      <div className="mb-3 d-flex justify-conten-center gap-2">
+        <input type="number" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="price"/>
         <textarea placeholder="description" className="form-control" id="" cols="30" rows="1"></textarea>
       </div>
 
-      <label for="exampleInputEmail1" class="form-label">A5</label>
-      <div class="mb-3 d-flex justify-conten-center gap-2">
-        <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="price"/>
+      <label htmlFor="exampleInputEmail1" className="form-label">A5</label>
+      <div className="mb-3 d-flex justify-conten-center gap-2">
+        <input type="number" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="price"/>
         <textarea placeholder="description" className="form-control" id="" cols="30" rows="1"></textarea>
       </div>
 
-      <label for="exampleInputEmail1" class="form-label">A4</label>
-      <div class="mb-3 d-flex justify-conten-center gap-2">
-        <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="price"/>
+      <label htmlFor="exampleInputEmail1" className="form-label">A4</label>
+      <div className="mb-3 d-flex justify-conten-center gap-2">
+        <input type="number" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="price"/>
         <textarea placeholder="description" className="form-control" id="" cols="30" rows="1"></textarea>
       </div>
 
-      <label for="exampleInputEmail1" class="form-label">F4</label>
-      <div class="mb-3 d-flex justify-conten-center gap-2">
-        <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="price"/>
+      <label htmlFor="exampleInputEmail1" className="form-label">F4</label>
+      <div className="mb-3 d-flex justify-conten-center gap-2">
+        <input type="number" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="price"/>
         <textarea placeholder="description" className="form-control" id="" cols="30" rows="1"></textarea>
       </div>
 
       <h6>Soft Cover</h6>
-      <label for="exampleInputEmail1" class="form-label">Letter</label>
-      <div class="mb-3 d-flex justify-conten-center gap-2">
-        <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="price"/>
+      <label htmlFor="exampleInputEmail1" className="form-label">Letter</label>
+      <div className="mb-3 d-flex justify-conten-center gap-2">
+        <input type="number" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="price"/>
         <textarea placeholder="description" className="form-control" id="" cols="30" rows="1"></textarea>
       </div>
       
-      <label for="exampleInputEmail1" class="form-label">Legal</label>
-      <div class="mb-3 d-flex justify-conten-center gap-2">
-        <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="price"/>
+      <label htmlFor="exampleInputEmail1" className="form-label">Legal</label>
+      <div className="mb-3 d-flex justify-conten-center gap-2">
+        <input type="number" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="price"/>
         <textarea placeholder="description" className="form-control" id="" cols="30" rows="1"></textarea>
       </div>
 
-      <label for="exampleInputEmail1" class="form-label">A5</label>
-      <div class="mb-3 d-flex justify-conten-center gap-2">
-        <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="price"/>
+      <label htmlFor="exampleInputEmail1" className="form-label">A5</label>
+      <div className="mb-3 d-flex justify-conten-center gap-2">
+        <input type="number" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="price"/>
         <textarea placeholder="description" className="form-control" id="" cols="30" rows="1"></textarea>
       </div>
 
-      <label for="exampleInputEmail1" class="form-label">A4</label>
-      <div class="mb-3 d-flex justify-conten-center gap-2">
-        <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="price"/>
+      <label htmlFor="exampleInputEmail1" className="form-label">A4</label>
+      <div className="mb-3 d-flex justify-conten-center gap-2">
+        <input type="number" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="price"/>
         <textarea placeholder="description" className="form-control" id="" cols="30" rows="1"></textarea>
       </div>
 
-      <label for="exampleInputEmail1" class="form-label">F4</label>
-      <div class="mb-3 d-flex justify-conten-center gap-2">
-        <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="price"/>
+      <label htmlFor="exampleInputEmail1" className="form-label">F4</label>
+      <div className="mb-3 d-flex justify-conten-center gap-2">
+        <input type="number" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="price"/>
         <textarea placeholder="description" className="form-control" id="" cols="30" rows="1"></textarea>
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" className="btn btn-primary">Submit</button>
     </form>
   </div>
   )

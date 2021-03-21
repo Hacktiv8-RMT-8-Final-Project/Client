@@ -8,7 +8,7 @@ import logo from '../assets/sharep.png'
 import Map from '../components/Map'
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:3001/shop/register'
+const baseUrl = 'http://localhost:3002/shop/register'
 
 function RegisterShop () {
   const [input, setInput] = useState({
