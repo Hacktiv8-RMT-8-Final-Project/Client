@@ -1,8 +1,11 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import {useState} from 'react'
 import '../styles/form.css'
 import logo from '../assets/sharep.png'
+import axios from 'axios'
+
+const baseUrl = 'http://localhost:3002/shop/login'
 
 function LoginShop () {
   const [input, setInput] = useState({
@@ -10,9 +13,18 @@ function LoginShop () {
     password: ''
   })
 
-  const submitLogin = (e) => {
-    e.preventDefault()
-    console.log('masuk')
+  const history = useHistory()
+
+  const submitLogin = async (e) => {
+    try {
+      e.preventDefault()
+      let user = await axios.post(baseUrl, input)
+      localStorage.setItem('access_token', user.data.access_token)
+      localStorage.setItem('email', user.data.email)
+      history.push('/')
+    }catch(err) {
+      console.log(err.response.data)
+    }
   }
 
   const onChangeHandler = (e) => {

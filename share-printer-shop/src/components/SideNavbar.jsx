@@ -1,11 +1,20 @@
 import React from 'react'
-import { NavLink, useParams } from 'react-router-dom'
+import { NavLink, useParams, useHistory } from 'react-router-dom'
 import './sideNavbar.css'
 import logo from '../assets/sharep.png'
 
 function SideNavbar () {
+
+  const history = useHistory()
+
+  const logout = () => {
+    localStorage.removeItem('access_token')
+    localStorage.removeItem('email')
+    history.push('/loginShop')
+  }
+
   const currentPath = window.location.pathname
-  console.log(currentPath)
+
   return (
     <div>
       <div className="wrapper">
@@ -77,7 +86,7 @@ function SideNavbar () {
           }
           
           <div className="d-flex justify-content-center ">
-            <button className="btn btn-danger fw-bold fs-5" id="btn-logout">Logout</button>
+            <button className="btn btn-danger fw-bold fs-5" id="btn-logout" onClick={logout}>Logout</button>
           </div>
         </nav> 
       </div>

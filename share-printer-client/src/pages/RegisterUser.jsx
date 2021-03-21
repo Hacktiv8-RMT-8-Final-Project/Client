@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import {useState} from 'react'
 import './form.css'
+import axios from 'axios'
 
 function RegisterUser () {
   const [input, setInput] = useState({
@@ -12,7 +13,6 @@ function RegisterUser () {
 
   const submitRegister = (e) => {
     e.preventDefault()
-    console.log('masuk')
   }
 
   const onChangeHandler = (e) => {

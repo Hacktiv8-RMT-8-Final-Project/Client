@@ -1,24 +1,36 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import {useState} from 'react'
 import '../styles/form.css'
 import logo from '../assets/sharep.png'
 // import {GoogleMapReact} from 'google-map-react';
 // import {GoogleMap, Marker} from 'react-google-maps'
 import Map from '../components/Map'
+import axios from 'axios'
+
+const baseUrl = 'http://localhost:3002/shop/register'
 
 function RegisterShop () {
   const [input, setInput] = useState({
     email: '',
-    username: '',
+    name: '',
     password: '',
     nameShop: '',
-    locate: []
+    location: ''
   })
 
-  const submitLogin = (e) => {
-    e.preventDefault()
-    console.log('masuk')
+  const history = useHistory()
+
+  const submitRegister = async (e) => {
+    try {
+      e.preventDefault()
+      await axios.post(baseUrl, input)
+      history.push('/loginShop')
+    }
+    catch(err) {
+      console.log(err.response.data)
+    }
+    
   }
 
   const onChangeHandler = (e) => {
@@ -26,7 +38,8 @@ function RegisterShop () {
     setInput({...input, [name]: value})
   }
   const setLocate = (value) => {
-    const locate = {...input, locate: value}
+    const locate = {...input, location: value}
+    console.log(value)
     setInput(locate)
   }
 
@@ -37,7 +50,7 @@ function RegisterShop () {
           <h1 className="">Share Printer</h1>
           <h5 className="mb-3 text-center">Register</h5>
           <br/>
-          <form onSubmit={submitLogin}>
+          <form onSubmit={submitRegister}>
             <div className="mb-3">
               <div className="input-group">
                 <div className="input-group-text"><i className="material-icons">email</i></div>
@@ -59,8 +72,8 @@ function RegisterShop () {
               className="form-control"
               placeholder="Username"
               onChange={onChangeHandler}
-              name="username"
-              value={input.username}
+              name="name"
+              value={input.name}
               />
             </div>
           </div>

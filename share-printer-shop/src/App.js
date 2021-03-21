@@ -6,39 +6,51 @@ import Home from './pages/Home'
 import NewAddProduct from './pages/NewAddProduct';
 import Test from './pages/tets';
 import SideNavbar from './components/SideNavbar';
+import { GuardProvider, GuardedRoute } from 'react-router-guards'
 import ProductCollection from './pages/ProductCollection';
 import OrderHistory from './pages/OrderHistory';
+
+const authenticate = (to, from, next) => {
+  if(localStorage.getItem('access_token') && to.location.pathname === '/loginShop'){
+    next.redirect('/')
+  } else if(localStorage.getItem('access_token') && to.location.pathname === '/registerShop'){
+    next.redirect('/')
+  } else if (!localStorage.getItem('access_token') && to.location.pathname === '/') {
+    next.redirect('/loginShop')
+  } else if (to.location.pathname === '/addProduct' && !localStorage.getItem('access_token')) {
+    next.redirect('/loginShop')
+  } else if (to.location.pathname === '/productCollection' && !localStorage.getItem('access_token')) {
+    next.redirect('/loginShop')
+  } else {
+    next()
+  }
+}
 
 function App() {
   return (
     <div className="App">
-      <Switch>
-        <Route path="/productCollection">
-          <SideNavbar />
-          <ProductCollection />
-        </Route>
-        <Route path="/addProduct">
-          <SideNavbar />
-          <NewAddProduct />
-        </Route>
-        <Route path="/loginShop">
-          <LoginShop />
-        </Route>
-        <Route path="/registerShop">
-          <RegisterShop />
-        </Route>
-        <Route path="/history">
-          <SideNavbar />
-          <OrderHistory />
-        </Route>
-        <Route path="/test">
-          <Test />
-        </Route>
-        <Route path="/">
-          <SideNavbar />
-          <Home />
-        </Route>
-      </Switch>
+      <GuardProvider guards={[authenticate]}>
+        <Switch>
+          <GuardedRoute path="/loginShop" component={LoginShop} />
+          <GuardedRoute path="/registerShop" component={RegisterShop} />
+          <GuardedRoute path="/productCollection" exact>
+            <SideNavbar />
+            <ProductCollection />
+          </GuardedRoute>
+          <GuardedRoute path="/history">
+            <SideNavbar />
+            <OrderHistory />
+          </GuardedRoute>
+          <GuardedRoute path="/addProduct" exact>
+            <SideNavbar />
+            <NewAddProduct />
+          </GuardedRoute>
+          <GuardedRoute path="/" exact>
+            <SideNavbar />
+            <Home />
+          </GuardedRoute>
+        </Switch>
+      </GuardProvider>
     </div>
   );
 }

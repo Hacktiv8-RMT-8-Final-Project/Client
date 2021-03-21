@@ -7,7 +7,7 @@ function ButtonNavHome () {
       <Link to="/printForm" className="btn btn-primary btn-nav-home fw-bold fs-4 pt-3">
         Print Form
       </Link>
-      <Link className="btn btn-primary btn-nav-home fw-bold fs-4 pt-3">
+      <Link to="/" className="btn btn-primary btn-nav-home fw-bold fs-4 pt-3">
         Check Status
       </Link>
       <Link to="/history" className="btn btn-primary btn-nav-home fw-bold fs-4 pt-3">
