@@ -22,7 +22,7 @@ function NewAddProduct () {
 
   useEffect(() => {
     axios({
-      url: 'http://localhost:3002/shop/detail',
+      url: 'http://localhost:3000/shop/detail',
       method: 'GET',
       headers: {access_token: localStorage.getItem('access_token')}
     })
@@ -40,14 +40,14 @@ function NewAddProduct () {
     let newProduct = {}
     newProduct[uuid] = input
     let products
-    if(shoper.products.length){
+    if(shoper && shoper.products.length){
       products = [...shoper.products, newProduct]
     } else {
       products = [newProduct]
     }
     const updateShop = {...shoper, products}
     await axios({
-      url: `http://localhost:3002/shop/detail/${shoper.id}`,
+      url: `http://localhost:3000/shop/detail/${shoper.id}`,
       method: 'PUT',
       headers: {access_token: localStorage.getItem('access_token')},
       data: updateShop
