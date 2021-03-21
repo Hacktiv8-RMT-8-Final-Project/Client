@@ -5,6 +5,7 @@ import RegisterShop from './pages/RegisterShop'
 import Home from './pages/Home'
 import NewAddProduct from './pages/NewAddProduct';
 import Test from './pages/tets';
+import ProductCollection from './pages/ProductCollection'
 import SideNavbar from './components/SideNavbar';
 import { GuardProvider, GuardedRoute } from 'react-router-guards'
 
@@ -17,6 +18,8 @@ const authenticate = (to, from, next) => {
     next.redirect('/loginShop')
   } else if (to.location.pathname === '/addProduct' && !localStorage.getItem('access_token')) {
     next.redirect('/loginShop')
+  } else if (to.location.pathname === '/productCollection' && !localStorage.getItem('access_token')) {
+    next.redirect('/loginShop')
   } else {
     next()
   }
@@ -27,25 +30,12 @@ function App() {
     <div className="App">
       <GuardProvider guards={[authenticate]}>
         <Switch>
-          {/* <Route path="/addProduct">
-            <SideNavbar />
-            <NewAddProduct />
-          </Route>
-          <Route path="/loginShop">
-            <LoginShop />
-          </Route>
-          <Route path="/registerShop">
-            <RegisterShop />
-          </Route>
-          <Route path="/test">
-            <Test />
-          </Route>
-          <Route path="/">
-            <SideNavbar />
-            <Home />
-          </Route> */}
           <GuardedRoute path="/loginShop" component={LoginShop} />
           <GuardedRoute path="/registerShop" component={RegisterShop} />
+          <GuardedRoute path="/productCollection" exact>
+            <SideNavbar />
+            <ProductCollection />
+          </GuardedRoute>
           <GuardedRoute path="/addProduct" exact>
             <SideNavbar />
             <NewAddProduct />

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import '../styles/style.css'
 import { v4 as uuidv4 } from 'uuid'
 import axios from 'axios'
+import { useHistory } from 'react-router'
 
 function NewAddProduct () {
   const [input, setInput] = useState({
@@ -9,6 +10,8 @@ function NewAddProduct () {
     price: 0,
     description: ''
   })
+
+  const history = useHistory()
 
   const [shoper, setShoper] = useState({})
 
@@ -34,23 +37,23 @@ function NewAddProduct () {
   const submitProduct = async (e) => {
     e.preventDefault()
     const uuid = uuidv4()
-    const newProduct = {uuid, input}
+    let newProduct = {}
+    newProduct[uuid] = input
     let products
     if(shoper.products.length){
-      console.log('masuk')
       products = [...shoper.products, newProduct]
     } else {
       products = [newProduct]
     }
     const updateShop = {...shoper, products}
-    const updated = await axios({
+    await axios({
       url: `http://localhost:3002/shop/detail/${shoper.id}`,
       method: 'PUT',
       headers: {access_token: localStorage.getItem('access_token')},
-      data: updateShop    
+      data: updateShop
     })
 
-    console.log(updated.data)
+    history.push('/productCollection')
   }
 
 
