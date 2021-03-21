@@ -7,6 +7,7 @@ import NewAddProduct from './pages/NewAddProduct';
 import Test from './pages/tets';
 import SideNavbar from './components/SideNavbar';
 import ProductCollection from './pages/ProductCollection';
+import OrderHistory from './pages/OrderHistory';
 
 function App() {
   return (
@@ -25,6 +26,10 @@ function App() {
         </Route>
         <Route path="/registerShop">
           <RegisterShop />
+        </Route>
+        <Route path="/history">
+          <SideNavbar />
+          <OrderHistory />
         </Route>
         <Route path="/test">
           <Test />

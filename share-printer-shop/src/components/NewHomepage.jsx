@@ -27,7 +27,7 @@ function NewHomepage () {
                 <button type="button" className="btn btn-warning" data-bs-toggle="modal" data-bs-target="#details">
                   Details
                 </button> 
-                <button type="button" className="btn btn-primary">
+                <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#payment">
                   Payment
                 </button>
               </div>
@@ -43,7 +43,7 @@ function NewHomepage () {
                 <button type="button" className="btn btn-warning" data-bs-toggle="modal" data-bs-target="#details">
                   Details
                 </button> 
-                <button type="button" className="btn btn-primary">
+                <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#payment">
                   Payment
                 </button>
               </div>
