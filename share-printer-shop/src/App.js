@@ -5,9 +5,10 @@ import RegisterShop from './pages/RegisterShop'
 import Home from './pages/Home'
 import NewAddProduct from './pages/NewAddProduct';
 import Test from './pages/tets';
-import ProductCollection from './pages/ProductCollection'
 import SideNavbar from './components/SideNavbar';
 import { GuardProvider, GuardedRoute } from 'react-router-guards'
+import ProductCollection from './pages/ProductCollection';
+import OrderHistory from './pages/OrderHistory';
 
 const authenticate = (to, from, next) => {
   if(localStorage.getItem('access_token') && to.location.pathname === '/loginShop'){
@@ -35,6 +36,10 @@ function App() {
           <GuardedRoute path="/productCollection" exact>
             <SideNavbar />
             <ProductCollection />
+          </GuardedRoute>
+          <GuardedRoute path="/history">
+            <SideNavbar />
+            <OrderHistory />
           </GuardedRoute>
           <GuardedRoute path="/addProduct" exact>
             <SideNavbar />
