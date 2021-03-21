@@ -14,6 +14,9 @@ function SideNavbar () {
               <NavLink to='/' classNameName="nav-link">Home</NavLink>
             </li>
             <li className="nav-item">
+              <NavLink to='/productCollection'>Product Collection</NavLink>
+            </li>
+            <li className="nav-item">
               <NavLink to='/addProduct'>Add Product</NavLink>
             </li>
           </ul>
