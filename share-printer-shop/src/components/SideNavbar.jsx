@@ -1,9 +1,17 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 import './sideNavbar.css'
 import logo from '../assets/sharep.png'
 
 function SideNavbar () {
+
+  const history = useHistory()
+
+  const logout = () => {
+    localStorage.removeItem('access_token')
+    history.push('/loginShop')
+  }
+
   return (
     <div>
       <div className="wrapper">
@@ -18,7 +26,7 @@ function SideNavbar () {
             </li>
           </ul>
           <div className="d-flex justify-content-center ">
-            <button className="btn btn-danger fw-bold fs-5" id="btn-logout">Logout</button>
+            <button className="btn btn-danger fw-bold fs-5" id="btn-logout" onClick={logout}>Logout</button>
           </div>
         </nav> 
       </div>

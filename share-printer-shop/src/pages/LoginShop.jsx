@@ -20,6 +20,7 @@ function LoginShop () {
       e.preventDefault()
       let user = await axios.post(baseUrl, input)
       localStorage.setItem('access_token', user.data.access_token)
+      localStorage.setItem('email', user.data.email)
       history.push('/')
     }catch(err) {
       console.log(err.response.data)
