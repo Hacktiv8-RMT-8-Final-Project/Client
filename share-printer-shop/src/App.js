@@ -6,12 +6,17 @@ import Home from './pages/Home'
 import NewAddProduct from './pages/NewAddProduct';
 import Test from './pages/tets';
 import SideNavbar from './components/SideNavbar';
+import ProductCollection from './pages/ProductCollection';
 
 function App() {
   return (
     <div className="App">
       <Switch>
-      <Route path="/addProduct">
+        <Route path="/productCollection">
+          <SideNavbar />
+          <ProductCollection />
+        </Route>
+        <Route path="/addProduct">
           <SideNavbar />
           <NewAddProduct />
         </Route>
