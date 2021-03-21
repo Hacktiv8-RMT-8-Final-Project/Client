@@ -5,7 +5,7 @@ function ProductCollection () {
   return (
     <div id="table-container" className="shadow p-5">
       <h4 className="text-center mb-5 fw-bold">Share P Product List</h4>
-      <table class="table table-hover">
+      <table className="table table-hover">
         <thead>
           <tr>
             <th scope="col">ProductId</th>
