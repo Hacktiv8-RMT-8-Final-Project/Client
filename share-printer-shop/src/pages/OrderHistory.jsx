@@ -4,12 +4,12 @@ import axios from 'axios'
 
 
 function OrderHistory () {
-  const [history, setHistory] = useState({})
+  const [history, setHistory] = useState([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     axios({
-      url: 'http://localhost:3000/shop/transaction_history',
+      url: 'http://localhost:3002/shop/transaction_history',
       method: 'GET',
       headers: {access_token: localStorage.getItem('access_token')}
     })
@@ -42,20 +42,22 @@ function OrderHistory () {
           </tr>
         </thead>
         <tbody>
-        {/* {   loading ? <div>Loading</div> :
+        {   loading ? <div>Loading</div> :
             history.data.map(data => {
-              <tr>
-                <th scope="row">{data.data.id}</th>
-                <td>Popo</td>
-                <td>Print - A4</td>
-                <td>4</td>
-                <td>500</td>
-                <td>2000</td>
-                <td className="">Print A3 kualitas super Black & White</td>
-                <td>Success</td>
-              </tr>
+              return (
+                <tr>
+                  <th scope="row">{data.id}</th>
+                  <td></td>
+                  <td>Print - A4</td>
+                  <td>4</td>
+                  <td>500</td>
+                  <td>2000</td>
+                  <td className="">Print A3 kualitas super Black & White</td>
+                  <td>Success</td>
+                </tr>
+              )
             })
-          } */}
+          }
          
         </tbody>
       </table>
