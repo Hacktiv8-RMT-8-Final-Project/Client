@@ -5,7 +5,7 @@ import '../styles/form.css'
 import logo from '../assets/sharep.png'
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:3002/shop/login'
+const baseUrl = 'http://localhost:3000/shop/login'
 
 function LoginShop () {
   const [input, setInput] = useState({

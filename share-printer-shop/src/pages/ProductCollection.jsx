@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 
 function ProductCollection () {
+  const history = useHistory()
   const [shoper, setShoper] = useState({})
+  const [dataProduct, setDataProduct] = useState ({})
+
+  const onChangeHandler = ({target}) => {
+    const {value, name} = target
+    setDataProduct({...dataProduct, [name]: value})
+  }
 
   useEffect(() => {
     axios({
-      url: 'http://localhost:3002/shop/detail',
+      url: 'http://localhost:3000/shop/detail',
       method: 'GET',
       headers: {access_token: localStorage.getItem('access_token')}
     })
@@ -22,7 +29,7 @@ function ProductCollection () {
   
   const deleteProduct = (value) => {
     axios({
-      url: 'http://localhost:3002/shop/detail/' + shoper.id,
+      url: 'http://localhost:3000/shop/detail/' + shoper.id,
       method: 'DELETE',
       headers: {access_token: localStorage.getItem('access_token')},
       data: {products_uuid: value}
@@ -35,8 +42,51 @@ function ProductCollection () {
       })
   }
 
-  const editProduct = () => {
-    
+  useEffect(() => {
+    axios({
+      url: 'http://localhost:3000/shop/detail',
+      method: 'GET',
+      headers: {access_token: localStorage.getItem('access_token')}
+    })
+      .then(({data}) => {
+        setShoper(data.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }, [])
+
+  const editProduct = async (e) => {
+    const updateProduct = shoper.products.filter(product => {
+      let key = Object.keys(product)[0]
+      return key === dataProduct.id
+    })
+  
+    shoper.products.forEach((product)=> {
+      let key = Object.keys(product)[0]
+      if(key === dataProduct.id) {
+        delete dataProduct.id
+        product[key] = dataProduct
+      } 
+    })
+
+    const updateShop = {...shoper, updateProduct}
+    await axios({
+      url: `http://localhost:3000/shop/detail/${shoper.id}`,
+      method: 'PUT',
+      headers: {access_token: localStorage.getItem('access_token')},
+      data: updateShop
+    })
+    history.push('/productCollection')
+  }
+
+  const getIdProduct = (id) => {
+    const product = shoper.products.filter(product => {
+      var key = Object.keys(product)[0]
+      return key === id
+    })
+    const idProduct = {...product[0][id], id}
+    setDataProduct(idProduct)
   }
 
   return (
@@ -64,7 +114,7 @@ function ProductCollection () {
                   <td className="">{product[key].description}</td>
                   <td>
                     <div className="d-flex gap-2 justify-content-center">
-                      <button className="btn btn-primary" onClick={editProduct}><i className="material-icons">edit</i></button> 
+                      <button className="btn btn-primary"><i className="material-icons" data-bs-toggle="modal" data-bs-target="#edit" onClick={()=> getIdProduct(key) }>edit</i></button> 
                       <button className="btn btn-danger" onClick={() => deleteProduct(key)}><i className="material-icons">delete</i></button>  
                     </div>
                   </td>
@@ -110,6 +160,56 @@ function ProductCollection () {
           </tr> */}
         </tbody>
       </table>
+
+
+      <div className="modal fade" id="edit" tabindex="-1" aria-labelledby="editLabel" aria-hidden="true">
+        <div className="modal-dialog modal-dialog-centered  modal-lg">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="editLabel">Edit Product</h5>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div className="modal-body">
+            <form id="" className="" onSubmit={editProduct} >
+                <div className="mb-3">
+                  <label for="exampleInputEmail1" className="form-label">Product Name:</label>
+                  <input type="text"
+                   className="form-control"
+                   name="display_name"
+                   onChange={onChangeHandler}
+                   value={dataProduct.display_name}
+                   />
+                </div>
+
+                <div className="mb-3">
+                  <label for="exampleInputEmail1" className="form-label">Price</label>
+                  <input type="text"
+                   className="form-control"
+                   name="price"
+                   onChange={onChangeHandler}
+                   value={dataProduct.price}
+                   />
+                </div>
+
+                <div className="mb-5">
+                  <label for="exampleInputEmail1" className="form-label">Description</label>
+                  <textarea 
+                  name="description" 
+                  id="" cols="30" 
+                  rows="5" 
+                  className="form-control"
+                  onChange={onChangeHandler}
+                  value={dataProduct.description}
+                  ></textarea>
+                </div>
+                <div className="d-flex justify-content-center gap-3">
+                  <button type="submit" className="btn btn-primary fw-bold rounded-pill" id="btn-submit">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
