@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './orderHistory.css'
 import axios from 'axios'
-
+import {Link} from 'react-router-dom'
 
 function OrderHistory () {
   const [history, setHistory] = useState([])
@@ -14,7 +14,7 @@ function OrderHistory () {
       headers: {access_token: localStorage.getItem('access_token')}
     })
       .then(({data}) => {
-        setHistory(data)
+        setHistory(data.data)
         console.log(data)
       })
       .catch(err => {
@@ -42,12 +42,12 @@ function OrderHistory () {
           </tr>
         </thead>
         <tbody>
-        {   loading ? <div>Loading</div> :
-            history.data.map(data => {
+        {   loading ? <tr><td>Loading</td></tr> :
+            history.map(data => {
               return (
-                <tr>
+                <tr key={data.id}>
                   <th scope="row">{data.id}</th>
-                  <td></td>
+                  <td>Printer</td>
                   <td>Print - A4</td>
                   <td>4</td>
                   <td>500</td>
