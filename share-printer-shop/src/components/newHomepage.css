@@ -1,6 +1,27 @@
 #table-container{
-  width: 60%;
-  margin-right: 250px;
+  width: 70%;
+  margin-right: 130px;
   margin-left: auto;
   margin-top: 5%;
 }
+
+#order-requested{
+  color: orange;
+}
+
+#paid {
+  color: green;
+}
+
+#confirm{
+  color: navy;
+}
+
+#on-progress{
+  color: rgb(255, 187, 0);
+}
+
+#canceled{
+  color: red;
+}
+
