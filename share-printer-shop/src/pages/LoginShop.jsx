@@ -4,8 +4,7 @@ import {useState} from 'react'
 import '../styles/form.css'
 import logo from '../assets/sharep.png'
 import axios from 'axios'
-
-const baseUrl = 'http://localhost:3002/shop/login'
+import {baseUrl} from '../baseUrl'
 
 function LoginShop () {
   const [input, setInput] = useState({
@@ -18,7 +17,7 @@ function LoginShop () {
   const submitLogin = async (e) => {
     try {
       e.preventDefault()
-      let user = await axios.post(baseUrl, input)
+      let user = await axios.post(baseUrl + 'shop/login', input)
       localStorage.setItem('access_token', user.data.access_token)
       localStorage.setItem('email', user.data.email)
       history.push('/')

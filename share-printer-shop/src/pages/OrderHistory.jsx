@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './orderHistory.css'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
+import {baseUrl} from '../baseUrl'
 
 function OrderHistory () {
   const [history, setHistory] = useState([])
@@ -9,7 +10,7 @@ function OrderHistory () {
 
   useEffect(() => {
     axios({
-      url: 'http://localhost:3002/shop/transaction_history',
+      url: baseUrl + 'shop/transaction_history',
       method: 'GET',
       headers: {access_token: localStorage.getItem('access_token')}
     })
