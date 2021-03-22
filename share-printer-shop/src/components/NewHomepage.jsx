@@ -151,11 +151,25 @@ function NewHomepage () {
                                 }
                               </div>
                             </div>
-                            <div className="modal-footer">
-                              <button type="button" className="btn btn-warning" data-bs-dismiss="modal" onClick={() => updateStatus(order.id, 4)}>On Progress</button>
-                              <button type="button" className="btn btn-success" data-bs-dismiss="modal" onClick={() => updateStatus(order.id, 5)}>Done</button>
-                              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            </div>
+                            {
+                              order.payment_status === 6 ?
+                              <div className="modal-footer">
+                                <button type="button" className="btn btn-warning" data-bs-dismiss="modal" disabled onClick={() => updateStatus(order.id, 4)}>On Progress</button>
+                                <button type="button" className="btn btn-success" data-bs-dismiss="modal" disabled onClick={() => updateStatus(order.id, 5)}>Done</button>
+                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              </div> :
+                              order.payment_status === 4 ?
+                              <div className="modal-footer">
+                                <button type="button" className="btn btn-warning" data-bs-dismiss="modal" disabled onClick={() => updateStatus(order.id, 4)}>On Progress</button>
+                                <button type="button" className="btn btn-success" data-bs-dismiss="modal" onClick={() => updateStatus(order.id, 5)}>Done</button>
+                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              </div> :
+                              <div className="modal-footer">
+                                <button type="button" className="btn btn-warning" data-bs-dismiss="modal" onClick={() => updateStatus(order.id, 4)}>On Progress</button>
+                                <button type="button" className="btn btn-success" data-bs-dismiss="modal" onClick={() => updateStatus(order.id, 5)}>Done</button>
+                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              </div>
+                            }
                           </div>
                         </div>
                       </div>
