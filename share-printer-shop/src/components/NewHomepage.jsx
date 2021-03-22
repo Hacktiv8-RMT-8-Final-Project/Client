@@ -94,10 +94,15 @@ function NewHomepage () {
                         <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target={payment}>
                           Payment
                         </button>
-
-                        <button type="button" className="btn btn-success" onClick={()=> downloadFile(order.files_url)}>
-                          Download File
-                        </button>
+                        {
+                          order.payment_status !== 3 ?
+                            <button type="button" className="btn btn-success" disabled onClick={()=> downloadFile(order.files_url)}>
+                              Download File
+                            </button> :
+                            <button type="button" className="btn btn-success" onClick={()=> downloadFile(order.files_url)}>
+                              Download File
+                            </button>
+                        }
                       </div>
                     </td>
 
@@ -157,7 +162,7 @@ function NewHomepage () {
                               </div>
                             </div>
                             {
-                              order.payment_status === 6 ?
+                              order.payment_status === 6 || order.payment_status < 3 ?
                               <div className="modal-footer">
                                 <button type="button" className="btn btn-warning" data-bs-dismiss="modal" disabled onClick={() => updateStatus(order.id, 4)}>On Progress</button>
                                 <button type="button" className="btn btn-success" data-bs-dismiss="modal" disabled onClick={() => updateStatus(order.id, 5)}>Done</button>
