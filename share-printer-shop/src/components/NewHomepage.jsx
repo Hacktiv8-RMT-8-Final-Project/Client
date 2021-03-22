@@ -95,11 +95,7 @@ function NewHomepage () {
                           Payment
                         </button>
 
-                        {/* <NavLink to={`${order.proof_receipt_transaction}`} type="button" className="btn btn-success">
-                          Download File
-                        </NavLink> */}
-
-                        <button type="button" className="btn btn-success" onClick={()=> downloadFile(order.proof_receipt_transaction)}>
+                        <button type="button" className="btn btn-success" onClick={()=> downloadFile(order.files_url)}>
                           Download File
                         </button>
                       </div>
