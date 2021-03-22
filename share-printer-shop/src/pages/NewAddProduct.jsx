@@ -3,7 +3,7 @@ import '../styles/style.css'
 import { v4 as uuidv4 } from 'uuid'
 import axios from 'axios'
 import { useHistory } from 'react-router'
-const baseUrl = 'http://localhost:3002/'
+import {baseUrl} from '../baseUrl'
 
 function NewAddProduct () {
   const [input, setInput] = useState({

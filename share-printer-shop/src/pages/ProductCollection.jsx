@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
-
-const baseUrl = 'http://localhost:3002/'
+import {baseUrl} from '../baseUrl'
 
 function ProductCollection () {
   const history = useHistory()
@@ -30,8 +29,9 @@ function ProductCollection () {
       .catch(err => {
         console.log(err)
       })
-  }, [shoper])
+  }, [])
 
+  console.log(shoper)
   
   const deleteProduct = (value) => {
     axios({
@@ -48,25 +48,7 @@ function ProductCollection () {
       })
   }
 
-  // useEffect(() => {
-  //   axios({
-  //     url: 'http://localhost:3000/shop/detail',
-  //     method: 'GET',
-  //     headers: {access_token: localStorage.getItem('access_token')}
-  //   })
-  //     .then(({data}) => {
-  //       setShoper(data.data)
-  //     })
-  //     .catch(err => {
-  //       console.log(err)
-  //     })
-  // }, [])
-
   const editProduct = async (e) => {
-    // const updateProduct = shoper.products.filter(product => {
-    //   let key = Object.keys(product)[0]
-    //   return key === dataProduct.id
-    // })
     console.log('masuk')
     e.preventDefault()
     const updateShop = {...shoper}
@@ -79,14 +61,14 @@ function ProductCollection () {
       } 
     })
 
-    let updatedShop = await axios({
+    let {data} = await axios({
       url: `${baseUrl}shop/detail/${shoper.id}`,
       method: 'PUT',
       headers: {access_token: localStorage.getItem('access_token')},
       data: updateShop
     })
 
-    setShoper(updatedShop.data)
+    setShoper(data.data)
     history.push('/productCollection')
   }
 

@@ -7,8 +7,7 @@ import logo from '../assets/sharep.png'
 // import {GoogleMap, Marker} from 'react-google-maps'
 import Map from '../components/Map'
 import axios from 'axios'
-
-const baseUrl = 'http://localhost:3002/shop/register'
+import {baseUrl} from '../baseUrl'
 
 function RegisterShop () {
   const [input, setInput] = useState({
@@ -25,7 +24,7 @@ function RegisterShop () {
   const submitRegister = async (e) => {
     try {
       e.preventDefault()
-      await axios.post(baseUrl, input)
+      await axios.post(baseUrl + 'shop/register', input)
       history.push('/loginShop')
     }
     catch(err) {

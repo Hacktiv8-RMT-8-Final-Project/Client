@@ -1,10 +1,10 @@
 import './App.css';
-import {Route, Switch} from 'react-router-dom'
+import {Switch} from 'react-router-dom'
 import LoginShop from './pages/LoginShop'
 import RegisterShop from './pages/RegisterShop'
 import Home from './pages/Home'
 import NewAddProduct from './pages/NewAddProduct';
-import Test from './pages/tets';
+// import Test from './pages/tets';
 import SideNavbar from './components/SideNavbar';
 import { GuardProvider, GuardedRoute } from 'react-router-guards'
 import ProductCollection from './pages/ProductCollection';
