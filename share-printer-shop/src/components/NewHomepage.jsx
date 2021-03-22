@@ -16,6 +16,7 @@ function NewHomepage () {
     })
       .then(({data}) => {
         setOrders(data.data)
+        console.log(data.data)
       })
       .catch(err => {
         console.log(err)
@@ -37,133 +38,92 @@ function NewHomepage () {
         <tbody>
           {
             orders?.map(order => {
+              let detail = `#detail-${order.id}`
+              let detailModal = `detail-${order.id}`
+              let payment = `#payment-${order.id}`
+              let paymentModal = `payment-${order.id}`
               return (
                   <tr key={order.id}>
                     <th scope="row">3</th>
                     <td>{order.email_user}</td>
-                    <td>Thornton</td>
+                    <td>{order.order_content}</td>
                     <td className="fst-italic">pending</td>
                     <td>
                       <div className="d-flex gap-2 justify-content-center">
-                        <button type="button" className="btn btn-warning" data-bs-toggle="modal" data-bs-target="#details">
+                        <button type="button" className="btn btn-warning" data-bs-toggle="modal" data-bs-target={detail}>
                           Details
                         </button>
 
-                        <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#payment">
+                        <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target={payment}>
                           Payment
                         </button>
+                      </div>
+                    </td>
+
+                  {/* Detail Modal */}
+                    <td>
+                      <div className="modal fade" id={detailModal} tabIndex="-1" aria-labelledby="detailsLabel" aria-hidden="true">
+                        <div className="modal-dialog modal-dialog-centered">
+                          <div className="modal-content">
+                            <div className="modal-header">
+                              <h5 className="modal-title" id="detailsLabel">Print Warna A3</h5>
+                              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div className="modal-body">
+                              <div className="mb-3">
+                                <p>Copy:</p>
+                                <p className="fw-bold">{order.order_content}</p>
+                              </div>
+                              <div className="mb-5">
+                                <p className="fw-bold">Notes:</p>
+                                <p>Print Warna A4 terbaik</p>
+                              </div>
+                              <hr/>
+                              <div className="mb-3">
+                                <p>Total Price:</p>
+                                <p className="fw-bold">{order.order_price}</p>
+                              </div>
+                              <hr/>
+                              <div className=" d-flex gap-3">
+                                <p className="fw-bold">Status:</p>
+                                <p>Pending</p>
+                              </div>
+                            </div>
+                            <div className="modal-footer">
+                              <button type="button" className="btn btn-warning">OnProgress</button>
+                              <button type="button" className="btn btn-success">Done</button>
+                              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Payment Modal */}
+                      <div className="modal fade" id={paymentModal} tabIndex="-1" aria-labelledby="paymentLabel" aria-hidden="true">
+                        <div className="modal-dialog modal-dialog-centered  modal-lg">
+                          <div className="modal-content">
+                            <div className="modal-header">
+                              <h5 className="modal-title" id="paymentLabel">Order Receipt</h5>
+                              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div className="modal-body">
+                              <img src={contohBuktiBayar} alt="contohBuktiBayar" id="bukti-bayar" className="mx-5"/>
+                            </div>
+                            <div className="modal-footer">
+                              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              <button type="button" className="btn btn-primary">Accept</button>
+                              <button type="button" className="btn btn-danger">Reject</button>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </td>
                   </tr>
               )
             })
           }
-          {/* <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td className="fst-italic">pending</td>
-            <td>
-              <div className="d-flex gap-2 justify-content-center">
-                <button type="button" className="btn btn-warning" data-bs-toggle="modal" data-bs-target="#details">
-                  Details
-                </button> 
-                <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#payment">
-                  Payment
-                </button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td className="fst-italic">pending</td>
-            <td>
-              <div className="d-flex gap-2 justify-content-center">
-                <button type="button" className="btn btn-warning" data-bs-toggle="modal" data-bs-target="#details">
-                  Details
-                </button> 
-                <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#payment">
-                  Payment
-                </button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td className="fst-italic">pending</td>
-            <td>
-              <div className="d-flex gap-2 justify-content-center">
-                <button type="button" className="btn btn-warning" data-bs-toggle="modal" data-bs-target="#details">
-                  Details
-                </button>
-
-                <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#payment">
-                  Payment
-                </button>
-              </div>
-            </td>
-          </tr> */}
         </tbody>
       </table>
-
-      {/* <div className="modal fade" id="details" tabIndex="-1" aria-labelledby="detailsLabel" aria-hidden="true">
-        <div className="modal-dialog modal-dialog-centered">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="detailsLabel">Print Warna A3</h5>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div className="modal-body">
-              <div className="mb-3">
-                <p>Copy:</p>
-                <p className="fw-bold">4</p>
-              </div>
-              <div className="mb-5">
-                <p className="fw-bold">Notes:</p>
-                <p>Print Warna A4 terbaik</p>
-              </div>
-              <hr/>
-              <div className="mb-3">
-                <p>Total Price:</p>
-                <p className="fw-bold">Rp. 40.000</p>
-              </div>
-              <hr/>
-              <div className=" d-flex gap-3">
-                <p className="fw-bold">Status:</p>
-                <p>Pending</p>
-              </div>
-            </div>
-            <div className="modal-footer">
-              <button type="button" className="btn btn-warning">OnProgress</button>
-              <button type="button" className="btn btn-success">Done</button>
-              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
-      </div> */}
-
-      {/* <div className="modal fade" id="payment" tabIndex="-1" aria-labelledby="paymentLabel" aria-hidden="true">
-        <div className="modal-dialog modal-dialog-centered  modal-lg">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="paymentLabel">Order Receipt</h5>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div className="modal-body">
-              <img src={contohBuktiBayar} alt="contohBuktiBayar" id="bukti-bayar" className="mx-5"/>
-            </div>
-            <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" className="btn btn-primary">Accept</button>
-              <button type="button" className="btn btn-danger">Reject</button>
-            </div>
-          </div>
-        </div>
-      </div> */}
     </div>
   )
 }
