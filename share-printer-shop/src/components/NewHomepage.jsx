@@ -3,6 +3,7 @@ import './newHomepage.css'
 import contohBuktiBayar from '../assets/BuktiBayar.png'
 import axios from 'axios'
 import { useHistory } from 'react-router'
+import { NavLink } from 'react-router-dom'
 const baseUrl = 'http://localhost:3002/'
 
 function NewHomepage () {
@@ -22,6 +23,10 @@ function NewHomepage () {
         console.log(err)
       })
   }, [orders])
+
+  function downloadFile (link) {
+    window.location.href = link
+  }
 
   function updateStatus (id, status) {
     axios({
@@ -90,7 +95,11 @@ function NewHomepage () {
                           Payment
                         </button>
 
-                        <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target={payment}>
+                        {/* <NavLink to={`${order.proof_receipt_transaction}`} type="button" className="btn btn-success">
+                          Download File
+                        </NavLink> */}
+
+                        <button type="button" className="btn btn-success" onClick={()=> downloadFile(order.proof_receipt_transaction)}>
                           Download File
                         </button>
                       </div>
@@ -183,7 +192,7 @@ function NewHomepage () {
                               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div className="modal-body">
-                              <img src={contohBuktiBayar} alt="contohBuktiBayar" id="bukti-bayar" className="mx-5"/>
+                              <img src={`${order.proof_receipt_transaction}`} alt="contohBuktiBayar" id="bukti-bayar" className="mx-5"/>
                             </div>
                             <div className="modal-footer">
                               {
