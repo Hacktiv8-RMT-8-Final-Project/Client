@@ -4,3 +4,13 @@
   margin-left: auto;
   margin-top: 5%;
 }
+
+#history-status-done{
+  background-color: rgba(0, 128, 0, 0.2);
+  width: 100px;
+  text-align: center;
+  font-weight: bold;
+  padding:5px;
+  border-radius: 15px;
+  color: rgb(3, 170, 3);
+}

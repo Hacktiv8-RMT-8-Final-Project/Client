@@ -69,15 +69,17 @@ function NewAddProduct () {
           <input type="text"
            className="form-control"
            name="display_name"
+           placeholder='Product Name'
            onChange={onChangeHandler}
            />
         </div>
 
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">Price</label>
-          <input type="text"
+          <input type="number"
            className="form-control"
            name="price"
+           placeholder="2000"
            onChange={onChangeHandler}
            />
         </div>
@@ -89,6 +91,7 @@ function NewAddProduct () {
           id="" cols="30" 
           rows="5" 
           className="form-control"
+          placeholder="Description"
           onChange={onChangeHandler}
           ></textarea>
         </div>

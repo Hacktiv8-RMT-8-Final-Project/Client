@@ -6,7 +6,7 @@
 }
 
 #order-requested{
-  color: orange;
+  color: green
 }
 
 #paid {
@@ -23,5 +23,39 @@
 
 #canceled{
   color: red;
+}
+
+.text-secondary{
+  color: rgb(19, 18, 18);
+}
+
+#status-order-onProgress{
+  background-color: rgba(255, 166, 0, 0.2);
+  padding: 5px;
+  text-align: center;
+  font-weight: bold;
+  color: orange;
+  border-radius: 15px;
+  
+}
+
+#status-order-confirm{
+  background-color: rgb(0, 0, 255, 0.2);
+  padding: 5px;
+  text-align: center;
+  font-weight: bold;
+  color: blue;
+  border-radius: 15px;
+  
+}
+
+#status-order-request{
+  background-color: rgba(0, 128, 0, 0.2);
+  text-align: center;
+  font-weight: bold;
+  padding:5px;
+  border-radius: 15px;
+  color: rgb(3, 170, 3);
+  
 }
 

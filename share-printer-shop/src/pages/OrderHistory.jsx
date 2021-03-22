@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './orderHistory.css'
 import axios from 'axios'
-import {Link} from 'react-router-dom'
 import {baseUrl} from '../baseUrl'
 
 function OrderHistory () {
@@ -29,18 +28,18 @@ function OrderHistory () {
 
   return (
     <div id="table-container-history" className="shadow p-5">
-      <h4 className="text-center mb-5 fw-bold">Share P Product List</h4>
+      <h4 className="text-center mb-5 fw-bold">SHARE PRINTER ORDER HISTORY</h4>
       <table className="table table-hover">
         <thead>
           <tr>
             <th scope="col">No.</th>
-            <th scope="col">Customer</th>
-            <th scope="col">Product Name</th>
-            <th scope="col">Copy</th>
-            <th scope="col">Price</th>
-            <th scope="col">Total</th>
-            <th scope="col">Description</th>
-            <th scope="col">Status Order</th>
+            <th scope="col">CUSTOMER</th>
+            <th scope="col">PRODUCT NAME</th>
+            <th scope="col">COPY</th>
+            <th scope="col">PRICE</th>
+            <th scope="col">TOTAL</th>
+            <th scope="col">DESCRIPTION</th>
+            <th scope="col">STATUS ORDER</th>
           </tr>
         </thead>
         <tbody>
@@ -56,23 +55,14 @@ function OrderHistory () {
                   <td>2000</td>
                   <td className="">Print A3 kualitas super Black & White</td>
                   {
-                    data.payment_status === 1 ?
-                      <td>Order Requested</td> :
-                    data.payment_status === 2 ?
-                      <td>Paid</td> :
-                    data.payment_status === 3 ?
-                      <td>Confirm</td> :
-                    data.payment_status === 4 ?
-                      <td>On Progress</td> :
                     data.payment_status === 5 ?
-                      <td>Completed</td> :
-                      <td>Canceled</td>
+                      <td> <p id="history-status-done">DONE</p> </td> :
+                      <td> <p id="histroy-status-canceled">CANCELED</p></td>
                   }
                 </tr>
               )
             })
           }
-         
         </tbody>
       </table>
     </div>
