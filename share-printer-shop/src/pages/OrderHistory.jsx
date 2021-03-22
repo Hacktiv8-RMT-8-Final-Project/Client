@@ -14,8 +14,8 @@ function OrderHistory () {
       headers: {access_token: localStorage.getItem('access_token')}
     })
       .then(({data}) => {
+        console.log(data.data)
         setHistory(data.data)
-        console.log(data)
       })
       .catch(err => {
         console.log(err)
@@ -34,7 +34,7 @@ function OrderHistory () {
             <th scope="col">No.</th>
             <th scope="col">Customer</th>
             <th scope="col">Product Name</th>
-            <th scope="col">copy</th>
+            <th scope="col">Copy</th>
             <th scope="col">Price</th>
             <th scope="col">Total</th>
             <th scope="col">Description</th>
@@ -43,17 +43,29 @@ function OrderHistory () {
         </thead>
         <tbody>
         {   loading ? <tr><td>Loading</td></tr> :
-            history.map(data => {
+            history.map((data, i) => {
               return (
                 <tr key={data.id}>
-                  <th scope="row">{data.id}</th>
-                  <td>Printer</td>
-                  <td>Print - A4</td>
+                  <th scope="row">{i + 1}</th>
+                  <td>{data.email_user}</td>
+                  <td>{data.order_content.data}</td>
                   <td>4</td>
-                  <td>500</td>
+                  <td>{data.order_price}</td>
                   <td>2000</td>
                   <td className="">Print A3 kualitas super Black & White</td>
-                  <td>Success</td>
+                  {
+                    data.payment_status === 1 ?
+                      <td>Order Requested</td> :
+                    data.payment_status === 2 ?
+                      <td>Paid</td> :
+                    data.payment_status === 3 ?
+                      <td>Confirm</td> :
+                    data.payment_status === 4 ?
+                      <td>On Progress</td> :
+                    data.payment_status === 5 ?
+                      <td>Completed</td> :
+                      <td>Canceled</td>
+                  }
                 </tr>
               )
             })
