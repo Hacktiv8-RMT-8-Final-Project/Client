@@ -66,14 +66,14 @@ function NewHomepage () {
 
   return (
     <div id="table-container" className="shadow p-5">
-      <h4 className="text-center mb-5 fw-bold">Share P Order List</h4>
+      <h4 className="text-center mb-5 fw-bold">SHARE PRINTER ORDER LIST</h4>
       <table className="table table-hover">
         <thead>
           <tr>
             <th scope="col">No. </th>
-            <th scope="col">Customer</th>
-            <th scope="col">Service</th>
-            <th scope="col">status</th>
+            <th scope="col">CUSTOMER</th>
+            <th scope="col">SERVICE</th>
+            <th scope="col">STATUS</th>
             <th scope="col"></th>
           </tr>
         </thead>
@@ -91,23 +91,23 @@ function NewHomepage () {
                   <td>{order.order_content?.data}</td>
                   {
                     order.payment_status === 1 ?
-                      <td  className="fst-italic"><p id="order-requesteds">Order Requested</p></td> :
+                      <td  className="fst-italic"><p id="status-order-request">Order Requested</p></td> :
                     order.payment_status === 2 ?
-                      <td  className="fst-italic"><p id="paids">Paid</p></td> :
+                      <td  className="fst-italic"><p id="status-order-paid">Paid</p></td> :
                     order.payment_status === 3 ?
-                      <td  className="fst-italic"><p id="confirms">Confirm</p> </td> :
+                      <td  className="fst-italic"><p id="status-order-confirm">Confirm</p> </td> :
                     order.payment_status === 4 ?
-                      <td  className="fst-italic"><p id="on-progresss">On Progress</p></td> :
+                      <td  className="fst-italic"><p id="status-order-onProgress">On Progress</p></td> :
                     order.payment_status === 5 ?
-                      <td  className="fst-italic"><p id="completeds">Completed</p></td> :
-                      <td  className="fst-italic"><p id="canceleds">Canceled</p></td>
+                      <td  className="fst-italic"><p id="status-order-completed">Completed</p></td> :
+                      <td  className="fst-italic"><p id="status-order-canceled">Canceled</p></td>
                   }
                   <td className="d-flex gap-2 justify-content-center">
-                    <button type="button" className="btn btn-warning" data-bs-toggle="modal" data-bs-target={detail} disabled={order.payment_status === 6}>
+                    <button type="button" className="btn btn-outline-warning fw-bold" data-bs-toggle="modal" data-bs-target={detail} disabled={order.payment_status === 6}>
                       Details
                     </button>
 
-                    <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target={payment} disabled={order.payment_status === 6}>
+                    <button type="button" className="btn btn-outline-primary fw-bold" data-bs-toggle="modal" data-bs-target={payment} disabled={order.payment_status === 6}>
                       Payment
                     </button>
                     {
@@ -143,30 +143,30 @@ function NewHomepage () {
                     <div className="modal-body">
                       <div className="mb-3">
                         <p>Order Number:</p>
-                        <p className="fw-bold">{order.order_number}</p>
+                        <p className="fw-bold text-secondary">{order.order_number}</p>
                       </div>
-                      <div className="mb-3">
+                      <div className="mb-3 text-secondary">
                         <p>Customer:</p>
-                        <p className="fw-bold">{order.email_user}</p>
+                        <p className="fw-bold text-secondary">{order.email_user}</p>
                       </div>
                       <div className="mb-3">
                         <p >Order Details:</p>
-                        <p className="fw-bold">{order?.order_content?.data}</p>
+                        <p className="fw-bold text-secondary">{order?.order_content?.data}</p>
                       </div>
                       <div className="d-flex gap-5">
                         <div className="mb-3">
                           <p>Amount:</p>
-                          <p className="fw-bold">5</p>
+                          <p className="fw-bold text-secondary">5</p>
                         </div>
                         <div className="mb-3">
                           <p>Price per sheet:</p>
-                          <p className="fw-bold">{order.order_price}</p>
+                          <p className="fw-bold text-secondary">{`Rp. ${order.order_price.toLocaleString('id')},00`}</p>
                         </div>
                       </div>
                       <hr/>
                       <div className="mb-3">
                         <p>Total Price:</p>
-                        <p className="fw-bold">{order.order_price}</p>
+                        <p className="fw-bold">{`Rp. ${order.order_price.toLocaleString('id')},00`}</p>
                       </div>
                       <hr/>
                       <div className=" d-flex gap-3">
@@ -189,8 +189,14 @@ function NewHomepage () {
                     {
                       order.payment_status === 6 || order.payment_status < 3 ?
                       <div className="modal-footer">
+                        <button type="button" className="btn btn-warning" data-bs-dismiss="modal" disabled onClick={() => updateStatus(order.id, 4)}>On Progress</button>
+                        <button type="button" className="btn btn-success" data-bs-dismiss="modal" disabled onClick={() => updateStatus(order.id, 5)}>Done</button>
+                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      </div> :
+                      order.payment_status === 3 ?
+                      <div className="modal-footer">
                         <button type="button" className="btn btn-warning" data-bs-dismiss="modal" onClick={() => updateStatus(order.id, 4)}>On Progress</button>
-                        <button type="button" className="btn btn-success" data-bs-dismiss="modal" onClick={() => updateStatus(order.id, 5)}>Done</button>
+                        <button type="button" className="btn btn-success" data-bs-dismiss="modal" disabled onClick={() => updateStatus(order.id, 5)}>Done</button>
                         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                       </div> :
                       order.payment_status === 4 ?
@@ -223,12 +229,14 @@ function NewHomepage () {
                     </div>
                     <div className="modal-footer">
                       {
-                        order.payment_status === 3 || order.payment_status === 6  ?
+                        order.payment_status >= 3  ?
                         <div className="d-flex gap-2">
+                          <button type="button" className="btn btn-success" data-bs-dismiss="modal" onClick={()=> downloadFile(order.proof_receipt_transaction)}>Download</button>
                           <button type="button" className="btn btn-primary" data-bs-dismiss="modal" disabled onClick={() => updateStatus(order.id, 3)}>Accept</button>
                           <button type="button" className="btn btn-danger" data-bs-dismiss="modal" disabled onClick={() => updateStatus(order.id, 6)}>Reject</button>
                         </div> :
                         <div className="d-flex gap-2">
+                          <button type="button" className="btn btn-success" data-bs-dismiss="modal" onClick={()=> downloadFile(order.proof_receipt_transaction)}>Download</button>
                           <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={() => updateStatus(order.id, 3)}>Accept</button>
                           <button type="button" className="btn btn-danger" data-bs-dismiss="modal"  onClick={() => updateStatus(order.id, 6)}>Reject</button>
                         </div>
