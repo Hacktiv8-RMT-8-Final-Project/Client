@@ -16,6 +16,7 @@ function OrderHistory () {
       .then(({data}) => {
         console.log(data.data)
         setHistory(data.data)
+        console.log(data.data)
       })
       .catch(err => {
         console.log(err)
