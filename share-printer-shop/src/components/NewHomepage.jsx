@@ -100,7 +100,9 @@ function NewHomepage () {
                       <td  className="fst-italic"><p id="status-order-onProgress">On Progress</p></td> :
                     order.payment_status === 5 ?
                       <td  className="fst-italic"><p id="status-order-completed">Completed</p></td> :
-                      <td  className="fst-italic"><p id="status-order-canceled">Canceled</p></td>
+                    order.payment_status === 6 ?
+                      <td  className="fst-italic"><p id="status-order-canceled">Canceled</p></td> :
+                      <td  className="fst-italic"><p id="status-order-reject">Reject</p></td>
                   }
                   <td className="d-flex gap-2 justify-content-center">
                     <button type="button" className="btn btn-outline-warning fw-bold" data-bs-toggle="modal" data-bs-target={detail} disabled={order.payment_status === 6}>
@@ -111,7 +113,7 @@ function NewHomepage () {
                       Payment
                     </button>
                     {
-                      order.payment_status < 3 || order.payment_status === 6 ?
+                      order.payment_status < 3 || order.payment_status === 6 || order.payment_status === 7 ?
                         <button type="button" className="btn btn-success" disabled onClick={()=> downloadFile(order.files_url)}>
                           <div className="d-flex gap-2 "><i  className="material-icons">download</i>Download File</div>
                         </button> :
@@ -143,11 +145,11 @@ function NewHomepage () {
                     <div className="modal-body">
                       <div className="mb-3">
                         <p>Order Number:</p>
-                        <p className="fw-bold text-secondary">{order.order_number}</p>
+                        <p className="fw-bold text-details">{order.order_number}</p>
                       </div>
                       <div className="mb-3">
                         <p>Customer:</p>
-                        <p className="fw-bold text-secondary">{order.email_user}</p>
+                        <p className="fw-bold text-details">{order.email_user}</p>
                       </div>
                       <div className="">
                         <p >Order Details:</p>
@@ -161,15 +163,15 @@ function NewHomepage () {
                               <div className="d-flex gap-5 ms-3">
                                 <div className="mb-3">
                                   <p>Copy:</p>
-                                  <p className="fw-bold text-secondary">{el[key].amount}</p>
+                                  <p className=" text-details">{el[key].amount}</p>
                                 </div>
                                 <div className="mb-3">
                                   <p>Price:</p>
-                                  <p className="fw-bold text-secondary">{`Rp. ${el[key].price.toLocaleString('id')},00`}</p>
+                                  <p className=" text-details">{`Rp. ${el[key].price.toLocaleString('id')},00`}</p>
                                 </div>
                                 <div className="mb-3">
                                   <p>Description:</p>
-                                  <p className="fw-bold text-secondary">{el[key].description}</p>
+                                  <p className=" text-details">{el[key].description}</p>
                                 </div>
                               </div>
                             </div>
@@ -196,12 +198,14 @@ function NewHomepage () {
                             <div  className="fw-bold"><p id="on-progress">On Progress</p></div> :
                           order.payment_status === 5 ?
                             <div  className="fw-bold"><p id="completed">Completed</p></div> :
-                            <div  className="fw-bold"><p id="canceled">Canceled</p></div>
+                          order.payment_status === 6 ?
+                            <div  className="fw-bold"><p id="canceled">Canceled</p></div> :
+                            <div  className="fw-bold"><p id="reject">Reject</p></div>
                         }
                       </div>
                     </div>
                     {
-                      order.payment_status === 6 || order.payment_status < 3 ?
+                      order.payment_status === 6 || order.payment_status === 7 || order.payment_status < 3 ?
                       <div className="modal-footer">
                         <button type="button" className="btn btn-warning" data-bs-dismiss="modal" disabled onClick={() => updateStatus(order.id, 4)}>On Progress</button>
                         <button type="button" className="btn btn-success" data-bs-dismiss="modal" disabled onClick={() => updateStatus(order.id, 5)}>Done</button>
@@ -247,12 +251,12 @@ function NewHomepage () {
                         <div className="d-flex gap-2">
                           <button type="button" className="btn btn-success" data-bs-dismiss="modal" onClick={()=> downloadFile(order.proof_receipt_transaction)}><div className="d-flex gap-2 "><i  className="material-icons">download</i>Download File</div></button>
                           <button type="button" className="btn btn-primary" data-bs-dismiss="modal" disabled onClick={() => updateStatus(order.id, 3)}>Accept</button>
-                          <button type="button" className="btn btn-danger" data-bs-dismiss="modal" disabled onClick={() => updateStatus(order.id, 6)}>Reject</button>
+                          <button type="button" className="btn btn-danger" data-bs-dismiss="modal" disabled onClick={() => updateStatus(order.id, 7)}>Reject</button>
                         </div> :
                         <div className="d-flex gap-2">
                           <button type="button" className="btn btn-success" data-bs-dismiss="modal" onClick={()=> downloadFile(order.proof_receipt_transaction)}><div className="d-flex gap-2 "><i  className="material-icons">download</i>Download File</div></button>
                           <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={() => updateStatus(order.id, 3)}>Accept</button>
-                          <button type="button" className="btn btn-danger" data-bs-dismiss="modal"  onClick={() => updateStatus(order.id, 6)}>Reject</button>
+                          <button type="button" className="btn btn-danger" data-bs-dismiss="modal"  onClick={() => updateStatus(order.id, 7)}>Reject</button>
                         </div>
                       }
                       <button type="button" className="btn btn-secondary"  data-bs-dismiss="modal">Close</button>

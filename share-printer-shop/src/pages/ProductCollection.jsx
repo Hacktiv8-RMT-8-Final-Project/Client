@@ -106,8 +106,8 @@ function ProductCollection () {
                   <td className="">{product[key].description}</td>
                   <td>
                     <div className="d-flex gap-2 justify-content-center">
-                      <button className="btn btn-outline-primary rounded-circle"><i className="material-icons" data-bs-toggle="modal" data-bs-target="#edit" onClick={()=> getIdProduct(key) }>edit</i></button> 
-                      <button className="btn btn-outline-danger rounded-circle" onClick={() => deleteProduct(key)}><i className="material-icons">delete</i></button>  
+                      <button className="btn btn-outline-primary rounded"><i className="material-icons" data-bs-toggle="modal" data-bs-target="#edit" onClick={()=> getIdProduct(key) }>edit</i></button> 
+                      <button className="btn btn-outline-danger rounded" onClick={() => deleteProduct(key)}><i className="material-icons">delete</i></button>  
                     </div>
                   </td>
                 </tr>
