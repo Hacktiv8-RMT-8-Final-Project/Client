@@ -155,7 +155,7 @@ function ProductCollection () {
 
 
       <div className="modal fade" id="edit" tabIndex="-1" aria-labelledby="editLabel" aria-hidden="true">
-        <div className="modal-dialog modal-dialog-centered  modal-lg">
+        <div className="modal-dialog modal-dialog-centered  modal-md">
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="editLabel">Edit Product</h5>

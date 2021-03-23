@@ -24,63 +24,63 @@ function SideNavbar () {
             currentPath === '/' ?
             <ul className="list-unstyled components">
               <li className="active nav-item">
-                <NavLink to='/' className="nav-link">Home</NavLink>
+                <NavLink to='/' className="nav-link"><div className="d-flex gap-2 mt-2"><i  className="material-icons">home</i>Home </div></NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to='/productCollection'>Product Collection</NavLink>
+                <NavLink to='/productCollection'><div className="d-flex gap-2 mt-2"><i className="material-icons">description</i>Product Collection</div></NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to='/addProduct'>Add Product</NavLink>
+                <NavLink to='/addProduct'><div className="d-flex gap-2 mt-2"><i className="material-icons">add_circle</i>Add Product</div></NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to='/history'>History</NavLink>
+                <NavLink to='/history'><div className="d-flex gap-2 mt-2"><i className="material-icons">history</i>History</div></NavLink>
               </li>
             </ul> :
 
             currentPath === '/productCollection' ?
             <ul className="list-unstyled components">
               <li className="nav-item">
-                <NavLink to='/' className="nav-link">Home</NavLink>
+                <NavLink to='/' className="nav-link"><div className="d-flex gap-2 mt-2"><i  className="material-icons">home</i>Home </div></NavLink>
               </li>
               <li className="active nav-item">
-                <NavLink to='/productCollection'>Product Collection</NavLink>
+                <NavLink to='/productCollection'><div className="d-flex gap-2 mt-2"><i className="material-icons">description</i>Product Collection</div></NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to='/addProduct'>Add Product</NavLink>
+                <NavLink to='/addProduct'><div className="d-flex gap-2 mt-2"><i className="material-icons">add_circle</i>Add Product</div></NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to='/history'>History</NavLink>
+                <NavLink to='/history'><div className="d-flex gap-2 mt-2"><i className="material-icons">history</i>History</div></NavLink>
               </li>
             </ul>:
 
             currentPath === '/addProduct' ?
             <ul className="list-unstyled components">
               <li className="nav-item">
-                <NavLink to='/' className="nav-link">Home</NavLink>
+                <NavLink to='/' className="nav-link"><div className="d-flex gap-2 mt-2"><i  className="material-icons">home</i>Home </div></NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to='/productCollection'>Product Collection</NavLink>
+                <NavLink to='/productCollection'><div className="d-flex gap-2 mt-2"><i className="material-icons">description</i>Product Collection</div></NavLink>
               </li>
               <li className="nav-item active">
-                <NavLink to='/addProduct'>Add Product</NavLink>
+                <NavLink to='/addProduct'><div className="d-flex gap-2 mt-2"><i className="material-icons">add_circle</i>Add Product</div></NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to='/history'>History</NavLink>
+                <NavLink to='/history'><div className="d-flex gap-2 mt-2"><i className="material-icons">history</i>History</div></NavLink>
               </li>
             </ul>:
 
             <ul className="list-unstyled components">
             <li className="e nav-item">
-              <NavLink to='/' className="nav-link">Home</NavLink>
+              <NavLink to='/' className="nav-link"><div className="d-flex gap-2 mt-2"><i  className="material-icons">home</i>Home </div></NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to='/productCollection'>Product Collection</NavLink>
+              <NavLink to='/productCollection'><div className="d-flex gap-2 mt-2"><i className="material-icons">description</i>Product Collection</div></NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to='/addProduct'>Add Product</NavLink>
+              <NavLink to='/addProduct'><div className="d-flex gap-2 mt-2"><i className="material-icons">add_circle</i>Add Product</div></NavLink>
             </li>
             <li className="active nav-item">
-                <NavLink to='/history'>History</NavLink>
+                <NavLink to='/history'><div className="d-flex gap-2 mt-2"><i className="material-icons">history</i>History</div></NavLink>
               </li>
           </ul>
           }
