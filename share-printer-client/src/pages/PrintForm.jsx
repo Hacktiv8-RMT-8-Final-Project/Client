@@ -27,8 +27,8 @@ function PrintForm () {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position => {
         const currentCoordinate = {
-          lat: -6.173799991607666,
-          lng: 106.82669830322266
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
         }
 
         setCurrentCoordinate(currentCoordinate)
