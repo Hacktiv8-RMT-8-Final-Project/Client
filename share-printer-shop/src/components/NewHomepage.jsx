@@ -152,47 +152,31 @@ function NewHomepage () {
                       <div className="">
                         <p >Order Details:</p>
                         <hr/>
-
-                      {/* ini yang diluping   */}
-                        <div>
-                          <p className="fw-bold">1. Binding A3</p>
-                          <div className="d-flex gap-5 ms-3">
-                            <div className="mb-3">
-                              <p>Copy:</p>
-                              <p className="fw-bold text-secondary">5</p>
+                      {
+                        order.order_content.map((el, i) => {
+                          let key = Object.keys(el)[0]
+                          return(
+                            <div key={el.id}>
+                              <p className="fw-bold">{i + 1}. {el[key].display_name}</p>
+                              <div className="d-flex gap-5 ms-3">
+                                <div className="mb-3">
+                                  <p>Copy:</p>
+                                  <p className="fw-bold text-secondary">{el[key].amount}</p>
+                                </div>
+                                <div className="mb-3">
+                                  <p>Price:</p>
+                                  <p className="fw-bold text-secondary">{`Rp. ${el[key].price.toLocaleString('id')},00`}</p>
+                                </div>
+                                <div className="mb-3">
+                                  <p>Description:</p>
+                                  <p className="fw-bold text-secondary">{el[key].description}</p>
+                                </div>
+                              </div>
                             </div>
-                            <div className="mb-3">
-                              <p>Price:</p>
-                              <p className="fw-bold text-secondary">{`Rp. ${order.order_price.toLocaleString('id')},00`}</p>
-                            </div>
-                            <div className="mb-3">
-                              <p>Description:</p>
-                              <p className="fw-bold text-secondary">soft cover</p>
-                            </div>
-                          </div>
-                        </div>
-                      {/* batas bawah */}
-
-                        <div>
-                          <p className="fw-bold">2. Print Colour A3 (each page)</p>
-                          <div className="d-flex gap-5 ms-3">
-                            <div className="mb-3">
-                              <p>Copy:</p>
-                              <p className="fw-bold text-secondary">20</p>
-                            </div>
-                            <div className="mb-3">
-                              <p>Price:</p>
-                              <p className="fw-bold text-secondary">{`Rp. ${order.order_price.toLocaleString('id')},00`}</p>
-                            </div>
-                            <div className="mb-3">
-                              <p>Description:</p>
-                              <p className="fw-bold text-secondary">50% full colour</p>
-                            </div>
-                          </div>
-                        </div>
+                          )
+                        })
+                      }
                       </div>
-
-
                       <hr/>
                       <div className="mb-3">
                         <p>Total Price:</p>
