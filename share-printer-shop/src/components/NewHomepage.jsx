@@ -73,7 +73,7 @@ function NewHomepage () {
             <th scope="col">No. </th>
             <th scope="col">CUSTOMER</th>
             <th scope="col">SERVICE</th>
-            <th scope="col">STATUS</th>
+            <th scope="col" className="text-center">STATUS</th>
             <th scope="col"></th>
           </tr>
         </thead>
@@ -88,7 +88,7 @@ function NewHomepage () {
                 <tr key={order.id}>
                   <th scope="row">{i + 1}</th>
                   <td>{order.email_user}</td>
-                  <td>{order.order_content?.data}</td>
+                  <td>Print Document</td>
                   {
                     order.payment_status === 1 ?
                       <td  className="fst-italic"><p id="status-order-request">Order Requested</p></td> :
@@ -113,10 +113,10 @@ function NewHomepage () {
                     {
                       order.payment_status < 3 || order.payment_status === 6 ?
                         <button type="button" className="btn btn-success" disabled onClick={()=> downloadFile(order.files_url)}>
-                          Download File
+                          <div className="d-flex gap-2 "><i  className="material-icons">download</i>Download File</div>
                         </button> :
                         <button type="button" className="btn btn-success" onClick={()=> downloadFile(order.files_url)}>
-                          Download File
+                          <div className="d-flex gap-2 "><i  className="material-icons">download</i>Download File</div>
                         </button>
                     }
                   </td>
@@ -137,7 +137,7 @@ function NewHomepage () {
                 <div className="modal-dialog modal-dialog-centered">
                   <div className="modal-content">
                     <div className="modal-header">
-                      <h5 className="modal-title" id="detailsLabel">Print Warna A3</h5>
+                      <h5 className="modal-title" id="detailsLabel">Order Lists</h5>
                       <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div className="modal-body">
@@ -145,28 +145,58 @@ function NewHomepage () {
                         <p>Order Number:</p>
                         <p className="fw-bold text-secondary">{order.order_number}</p>
                       </div>
-                      <div className="mb-3 text-secondary">
+                      <div className="mb-3">
                         <p>Customer:</p>
                         <p className="fw-bold text-secondary">{order.email_user}</p>
                       </div>
-                      <div className="mb-3">
+                      <div className="">
                         <p >Order Details:</p>
-                        <p className="fw-bold text-secondary">{order?.order_content?.data}</p>
-                      </div>
-                      <div className="d-flex gap-5">
-                        <div className="mb-3">
-                          <p>Amount:</p>
-                          <p className="fw-bold text-secondary">5</p>
+                        <hr/>
+
+                      {/* ini yang diluping   */}
+                        <div>
+                          <p className="fw-bold">1. Binding A3</p>
+                          <div className="d-flex gap-5 ms-3">
+                            <div className="mb-3">
+                              <p>Copy:</p>
+                              <p className="fw-bold text-secondary">5</p>
+                            </div>
+                            <div className="mb-3">
+                              <p>Price:</p>
+                              <p className="fw-bold text-secondary">{`Rp. ${order.order_price.toLocaleString('id')},00`}</p>
+                            </div>
+                            <div className="mb-3">
+                              <p>Description:</p>
+                              <p className="fw-bold text-secondary">soft cover</p>
+                            </div>
+                          </div>
                         </div>
-                        <div className="mb-3">
-                          <p>Price per sheet:</p>
-                          <p className="fw-bold text-secondary">{`Rp. ${order.order_price.toLocaleString('id')},00`}</p>
+                      {/* batas bawah */}
+
+                        <div>
+                          <p className="fw-bold">2. Print Colour A3 (each page)</p>
+                          <div className="d-flex gap-5 ms-3">
+                            <div className="mb-3">
+                              <p>Copy:</p>
+                              <p className="fw-bold text-secondary">20</p>
+                            </div>
+                            <div className="mb-3">
+                              <p>Price:</p>
+                              <p className="fw-bold text-secondary">{`Rp. ${order.order_price.toLocaleString('id')},00`}</p>
+                            </div>
+                            <div className="mb-3">
+                              <p>Description:</p>
+                              <p className="fw-bold text-secondary">50% full colour</p>
+                            </div>
+                          </div>
                         </div>
                       </div>
+
+
                       <hr/>
                       <div className="mb-3">
                         <p>Total Price:</p>
-                        <p className="fw-bold">{`Rp. ${order.order_price.toLocaleString('id')},00`}</p>
+                        <p className="fw-bold fs-3">{`Rp. ${order.order_price.toLocaleString('id')},00`}</p>
                       </div>
                       <hr/>
                       <div className=" d-flex gap-3">
@@ -231,12 +261,12 @@ function NewHomepage () {
                       {
                         order.payment_status >= 3  ?
                         <div className="d-flex gap-2">
-                          <button type="button" className="btn btn-success" data-bs-dismiss="modal" onClick={()=> downloadFile(order.proof_receipt_transaction)}>Download</button>
+                          <button type="button" className="btn btn-success" data-bs-dismiss="modal" onClick={()=> downloadFile(order.proof_receipt_transaction)}><div className="d-flex gap-2 "><i  className="material-icons">download</i>Download File</div></button>
                           <button type="button" className="btn btn-primary" data-bs-dismiss="modal" disabled onClick={() => updateStatus(order.id, 3)}>Accept</button>
                           <button type="button" className="btn btn-danger" data-bs-dismiss="modal" disabled onClick={() => updateStatus(order.id, 6)}>Reject</button>
                         </div> :
                         <div className="d-flex gap-2">
-                          <button type="button" className="btn btn-success" data-bs-dismiss="modal" onClick={()=> downloadFile(order.proof_receipt_transaction)}>Download</button>
+                          <button type="button" className="btn btn-success" data-bs-dismiss="modal" onClick={()=> downloadFile(order.proof_receipt_transaction)}><div className="d-flex gap-2 "><i  className="material-icons">download</i>Download File</div></button>
                           <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={() => updateStatus(order.id, 3)}>Accept</button>
                           <button type="button" className="btn btn-danger" data-bs-dismiss="modal"  onClick={() => updateStatus(order.id, 6)}>Reject</button>
                         </div>
