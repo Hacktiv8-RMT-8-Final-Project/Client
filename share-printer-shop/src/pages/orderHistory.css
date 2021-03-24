@@ -14,3 +14,7 @@
   border-radius: 15px;
   color: rgb(3, 170, 3);
 }
+
+#completed{
+  color: green;
+}
